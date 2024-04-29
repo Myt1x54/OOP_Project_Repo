@@ -17,7 +17,6 @@ StartScreen::StartScreen(sf::RenderWindow& window) : window(window)
     startText.setFillColor(sf::Color::Red);
     startText.setPosition(950, 800);
 }
-// mo
 void StartScreen::draw()
 {
     // Draw background
