@@ -14,6 +14,8 @@ StartScreen::StartScreen(sf::RenderWindow& window) : window(window)
     // Load font for text
     font.loadFromFile("../Images/Comic_Sans.ttf");
 
+    // 123
+
     // Set up start text
     startText.setFont(font);
     startText.setString("Press Space to Start");
