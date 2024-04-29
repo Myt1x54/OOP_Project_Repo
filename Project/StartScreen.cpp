@@ -8,9 +8,9 @@ StartScreen::StartScreen(sf::RenderWindow& window) : window(window)
     backgroundSprite.setTexture(backgroundTexture);
 
     //ola123
-
-
-
+    asd
+        as
+        as
     // Load font for text
     font.loadFromFile("../Images/Comic_Sans.ttf");
 
