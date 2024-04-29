@@ -7,14 +7,9 @@ StartScreen::StartScreen(sf::RenderWindow& window) : window(window)
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
 
-    //ola123
-    asd
-        as
-        as
     // Load font for text
     font.loadFromFile("../Images/Comic_Sans.ttf");
 
-    // 123
 
     // Set up start text
     startText.setFont(font);
