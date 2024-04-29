@@ -10,7 +10,7 @@ StartScreen::StartScreen(sf::RenderWindow& window) : window(window)
     // Load font for text
     font.loadFromFile("../Images/Comic_Sans.ttf");
 
-    // moiz
+    // 123
 
     // Set up start text
     startText.setFont(font);
