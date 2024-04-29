@@ -2,11 +2,14 @@
 #include <SFML/Graphics.hpp>
 StartScreen::StartScreen(sf::RenderWindow& window) : window(window)
 {
-    //bablu hio
     // Load background image
     backgroundimage.loadFromFile("../Images/start_background.jpg");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
+
+    //ola
+
+
 
     // Load font for text
     font.loadFromFile("../Images/Comic_Sans.ttf");
