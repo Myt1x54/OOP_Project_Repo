@@ -114,6 +114,7 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include "StartScreen.h"
+#include "MainMenu.h"
 using namespace sf;
 using namespace std;
 
@@ -164,51 +165,69 @@ int main()
 
 	// Create an instance of the StartScreen class
 	StartScreen startScreen(window);
+	startScreen.display(window, startScreen);
+	
+	MainMenu mainMenu(window);
+	 while (window.isOpen())
+    {
+        float time = clock.getElapsedTime().asMicroseconds();
+        float moneyTime = timeMoney.getElapsedTime().asSeconds();
 
-	while (window.isOpen())
-	{
-		// Event handling
-		Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-				window.close();
-		}
+        clock.restart();
+        time = time / 800;
 
-		// Display the start screen
-		startScreen.draw();
-		window.display();
+        Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+                window.close();
+        }
 
-		// Check if the space key is pressed to start the game
-		if (startScreen.isStartKeyPressed())
-		{
-			// Break out of the loop to start the game
-			break;
-		}
-	}
+        // Display the main menu
+        mainMenu.draw();
+		int selectedOption = mainMenu.handleInput();
+
+        // Perform actions based on the selected option
+        switch (selectedOption)
+        {
+            case 0:
+				while (window.isOpen())
+				{
+					float time = clock.getElapsedTime().asMicroseconds();
+					float moneyTime = timeMoney.getElapsedTime().asSeconds();
+
+					clock.restart();
+					time = time / 800;
+
+					Event event;
+					while (window.pollEvent(event))
+					{
+						if (event.type == Event::Closed)
+							window.close();
+					}
+
+					// Create a background
+					createBack(window);
+
+					window.setSize(sf::Vector2u(1920, 1080));
+					window.display();
+				}
+                break;
+            case 1:
+                // Show instructions
+                break;
+            case 2:
+                // Show scoreboard
+                break;
+            default:
+                break;
+        }
+
+        window.display();
+    }
 
 	// Main game loop and logic go here
-	while (window.isOpen())
-	{
-		float time = clock.getElapsedTime().asMicroseconds();
-		float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-		clock.restart();
-		time = time / 800;
-
-		Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-				window.close();
-		}
-
-		// Create a background
-		createBack(window);
-
-		window.setSize(sf::Vector2u(1920, 1080));
-		window.display();
-	}
+	
 
 	return 0;
 }

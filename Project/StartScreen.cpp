@@ -1,22 +1,13 @@
-#include "StartScreen.h"
 #include <SFML/Graphics.hpp>
+#include "StartScreen.h"
+#include <ctime>
 StartScreen::StartScreen(sf::RenderWindow& window) : window(window)
 {
     // Load background image
-    backgroundimage.loadFromFile("../Images/start_background.jpg");
+    backgroundimage.loadFromFile("../Images/start_background.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
 
-    // Load font for text
-    font.loadFromFile("../Images/Comic_Sans.ttf");
-
-
-    // Set up start text
-    startText.setFont(font);
-    startText.setString("Press Space to Start");
-    startText.setCharacterSize(30);
-    startText.setFillColor(sf::Color::Red);
-    startText.setPosition(950, 800);
 }
 void StartScreen::draw()
 {
@@ -25,6 +16,31 @@ void StartScreen::draw()
 
     // Draw start text
     //window.draw(startText);
+}
+
+void StartScreen::display(sf::RenderWindow& window, StartScreen& screen)
+{
+	while (window.isOpen())
+	{
+		// Event handling
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		// Display the start screen
+		screen.draw();
+		window.display();
+
+		// Check if the space key is pressed to start the game
+		if (screen.isStartKeyPressed())
+		{
+			// Break out of the loop to start the game
+			break;
+		}
+	}
 }
 
 bool StartScreen::isStartKeyPressed()
