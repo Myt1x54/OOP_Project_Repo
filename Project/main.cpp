@@ -255,8 +255,19 @@ struct coordinats {
 
 int main()
 {
+	 
+
 	// Create a window, n* n
 	RenderWindow window(VideoMode::getFullscreenModes()[0], "Plants Vs Zombies", Style::Fullscreen);
+
+	//Game icon
+	Image icon;
+	if (!icon.loadFromFile("../Images/icon.png"))
+	{
+		return 1;
+	}
+	window.setIcon(32, 32, icon.getPixelsPtr());
+
 
 	Game game(window);
 	game.run();
