@@ -256,7 +256,6 @@ struct coordinats {
 int main()
 {
 	 
-
 	// Create a window, n* n
 	RenderWindow window(VideoMode::getFullscreenModes()[0], "Plants Vs Zombies", Style::Fullscreen);
 

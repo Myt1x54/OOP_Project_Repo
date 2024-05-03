@@ -72,7 +72,6 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window), isMouseClicked(fa
     menuTexture.loadFromFile("../Images/StartMenu.png");
     menuSprite.setTexture(menuTexture);
     stageScreen = new StagesScreen(window);
-    isMouseClicked = false;
     selectedOption = -1;
 }
 
@@ -148,8 +147,4 @@ int MainMenu::display(sf::RenderWindow& window, MainMenu& menu)
 StagesScreen* MainMenu::getStageScreen()
 {
     return stageScreen;
-}
-MainMenu::~MainMenu()
-{
-    delete stageScreen;
 }
