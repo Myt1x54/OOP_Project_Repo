@@ -35,5 +35,4 @@ public:
     void draw();
     int display(sf::RenderWindow& window, MainMenu& menu);
     int handleInput();
-    ~MainMenu();
 };

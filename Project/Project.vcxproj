@@ -139,17 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BeginnersGarden.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Levels.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="StagesScreen.cpp" />
     <ClCompile Include="StartScreen.cpp" />
+    <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BeginnersGarden.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Levels.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="StagesScreen.h" />
     <ClInclude Include="StartScreen.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

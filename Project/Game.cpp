@@ -9,7 +9,7 @@ void createBack(RenderWindow& window)
 {
     // Drawing the background
     Image map_image;
-    map_image.loadFromFile("../Images/background.png");
+    map_image.loadFromFile("../Images/BeginnersGarden.png");
     Texture map;
     map.loadFromImage(map_image);
     Sprite s_map;
@@ -58,8 +58,7 @@ void Game::runStartScreen()
 
 void Game::runMainMenu()
 {
-    mainMenu->draw();
-    window.display();
+    mainMenu->display(window, *mainMenu);
 
     int selectedOption = mainMenu->handleInput();
 
@@ -80,32 +79,33 @@ void Game::runMainMenu()
 
 void Game::runStagesScreen()
 {
-    stagesScreen->draw();
-    window.display();
+    stagesScreen->display(window, *stagesScreen);
+    Levels* levels = new BeginnersGarden(window);
+
 
     int selectedOption = stagesScreen->handleInput();
 
     switch (selectedOption) {
     case 0:
-        while (window.isOpen())
-        {
-            Clock timeMoney;
-            Clock clock;
+        //while (window.isOpen())
+        //{
+        //    Clock timeMoney;
+        //    Clock clock;
 
-            float time = clock.getElapsedTime().asMicroseconds();
-            float moneyTime = timeMoney.getElapsedTime().asSeconds();
+        //    float time = clock.getElapsedTime().asMicroseconds();
+        //    float moneyTime = timeMoney.getElapsedTime().asSeconds();
 
-            clock.restart();
-            time = time / 800;
+        //    clock.restart();
+        //    time = time / 800;
 
-            handleEvents();
+        //    handleEvents();
 
-            // Create a background
-            createBack(window);
+        //    // Create a background
+        //    createBack(window);
 
-            window.setSize(sf::Vector2u(1920, 1080));
-            window.display();
-        }
+        //    window.display();
+        //}
+        levels->display();
         break;
     case 1:
         while (window.isOpen())
