@@ -3,6 +3,7 @@
 #include "StartScreen.h"
 #include "MainMenu.h"
 #include "StagesScreen.h"
+#include "BeginnersGarden.h"
 class Game
 {
 private:

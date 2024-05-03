@@ -89,7 +89,7 @@ int MainMenu::handleInput()
     }
     if (isMouseClicked)
     {
-        sf::sleep(sf::milliseconds(200)); // Adjust the delay as needed
+        //sf::sleep(sf::milliseconds(200)); // Adjust the delay as needed
         if (mousePosition.x >= 690 && mousePosition.x <= 1240 && mousePosition.y >= 192 && mousePosition.y <= 285)
         {
             selectedOption = 0;
