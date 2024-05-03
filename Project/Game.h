@@ -3,7 +3,13 @@
 #include "StartScreen.h"
 #include "MainMenu.h"
 #include "StagesScreen.h"
+#include "Levels.h"
 #include "BeginnersGarden.h"
+#include "ZombieOutskirts.h"
+#include "SunflowerFields.h"
+#include "FoggyForest.h"
+#include "NighttimeSiege.h"
+#include "RooftopRampage.h"
 class Game
 {
 private:

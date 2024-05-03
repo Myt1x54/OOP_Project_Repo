@@ -1,30 +1,30 @@
-#include "BeginnersGarden.h"
+#include "RooftopRampage.h"
 
 
-BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
+RooftopRampage::RooftopRampage(RenderWindow& window) : Levels(window)
 {
     // Load background image for BeginnersGarden
-    backgroundimage.loadFromFile("../Images/BeginnersGarden.png");
+    backgroundimage.loadFromFile("../Images/RooftopRampage.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
 }
 
-void BeginnersGarden::draw()
+void RooftopRampage::draw()
 {
     window.draw(backgroundSprite);
 }
 
-int BeginnersGarden::display()
+int RooftopRampage::display()
 {
     while (window.isOpen()) {
-        // Handle events specific to BeginnersGarden
+        // Handle events specific to RooftopRampage
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        draw(); // Draw the BeginnersGarden
+        draw(); // Draw the ZombiesOutskirts
         window.display();
         //
     }

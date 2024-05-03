@@ -1,30 +1,31 @@
-#include "BeginnersGarden.h"
+#include "ZombieOutskirts.h"
 
 
-BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
+
+ZombieOutskirts::ZombieOutskirts(RenderWindow& window) : Levels(window)
 {
     // Load background image for BeginnersGarden
-    backgroundimage.loadFromFile("../Images/BeginnersGarden.png");
+    backgroundimage.loadFromFile("../Images/ZombieOutskirts.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
 }
 
-void BeginnersGarden::draw()
+void ZombieOutskirts::draw()
 {
     window.draw(backgroundSprite);
 }
 
-int BeginnersGarden::display()
+int ZombieOutskirts::display()
 {
     while (window.isOpen()) {
-        // Handle events specific to BeginnersGarden
+        // Handle events specific to ZombiesOutskirts
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        draw(); // Draw the BeginnersGarden
+        draw(); // Draw the ZombiesOutskirts
         window.display();
         //
     }

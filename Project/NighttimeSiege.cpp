@@ -1,30 +1,30 @@
-#include "BeginnersGarden.h"
+#include "NighttimeSiege.h"
 
 
-BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
+NighttimeSiege::NighttimeSiege(RenderWindow& window) : Levels(window)
 {
     // Load background image for BeginnersGarden
-    backgroundimage.loadFromFile("../Images/BeginnersGarden.png");
+    backgroundimage.loadFromFile("../Images/NighttimeSeige.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
 }
 
-void BeginnersGarden::draw()
+void NighttimeSiege::draw()
 {
     window.draw(backgroundSprite);
 }
 
-int BeginnersGarden::display()
+int NighttimeSiege::display()
 {
     while (window.isOpen()) {
-        // Handle events specific to BeginnersGarden
+        // Handle events specific to NighttimeSiege
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        draw(); // Draw the BeginnersGarden
+        draw(); // Draw the ZombiesOutskirts
         window.display();
         //
     }

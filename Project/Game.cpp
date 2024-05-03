@@ -9,7 +9,7 @@ void createBack(RenderWindow& window)
 {
     // Drawing the background
     Image map_image;
-    map_image.loadFromFile("../Images/BeginnersGarden.png");
+    map_image.loadFromFile("../Images/background4.png");
     Texture map;
     map.loadFromImage(map_image);
     Sprite s_map;
@@ -80,138 +80,35 @@ void Game::runMainMenu()
 void Game::runStagesScreen()
 {
     stagesScreen->display(window, *stagesScreen);
-    Levels* levels = new BeginnersGarden(window);
+    Levels* levels[6];
+    levels[0] = new BeginnersGarden(window);
+    levels[1] = new ZombieOutskirts(window);
+    levels[2] = new SunflowerFields(window);
+    levels[3] = new FoggyForest(window);
+    levels[4] = new NighttimeSiege(window);
+    levels[5] = new RooftopRampage(window);
 
 
     int selectedOption = stagesScreen->handleInput();
 
     switch (selectedOption) {
     case 0:
-        //while (window.isOpen())
-        //{
-        //    Clock timeMoney;
-        //    Clock clock;
-
-        //    float time = clock.getElapsedTime().asMicroseconds();
-        //    float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-        //    clock.restart();
-        //    time = time / 800;
-
-        //    handleEvents();
-
-        //    // Create a background
-        //    createBack(window);
-
-        //    window.display();
-        //}
-        levels->display();
+        levels[0]->display();               // Beginner's Garden
         break;
     case 1:
-        while (window.isOpen())
-        {
-            Clock timeMoney;
-            Clock clock;
-
-            float time = clock.getElapsedTime().asMicroseconds();
-            float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-            clock.restart();
-            time = time / 800;
-
-            handleEvents();
-
-            // Create a background
-            createBack(window);
-
-            window.setSize(sf::Vector2u(1920, 1080));
-            window.display();
-        }
+        levels[1]->display();               // Zombies Outskirts
         break;
-        // Add cases for other levels
     case 2:
-        while (window.isOpen())
-        {
-            Clock timeMoney;
-            Clock clock;
-
-            float time = clock.getElapsedTime().asMicroseconds();
-            float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-            clock.restart();
-            time = time / 800;
-
-            handleEvents();
-
-            // Create a background
-            createBack(window);
-
-            window.setSize(sf::Vector2u(1920, 1080));
-            window.display();
-        }
+        levels[2]->display();               // Sunflower Field
         break;
     case 3:
-        while (window.isOpen())
-        {
-            Clock timeMoney;
-            Clock clock;
-
-            float time = clock.getElapsedTime().asMicroseconds();
-            float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-            clock.restart();
-            time = time / 800;
-
-            handleEvents();
-
-            // Create a background
-            createBack(window);
-
-            window.setSize(sf::Vector2u(1920, 1080));
-            window.display();
-        }
+        levels[3]->display();               // Foggy Forest
         break;
     case 4:
-        while (window.isOpen())
-        {
-            Clock timeMoney;
-            Clock clock;
-
-            float time = clock.getElapsedTime().asMicroseconds();
-            float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-            clock.restart();
-            time = time / 800;
-
-            handleEvents();
-
-            // Create a background
-            createBack(window);
-
-            window.setSize(sf::Vector2u(1920, 1080));
-            window.display();
-        }
+        levels[4]->display();               // Nighttime Siege
         break;
     case 5:
-        while (window.isOpen())
-        {
-            Clock timeMoney;
-            Clock clock;
-
-            float time = clock.getElapsedTime().asMicroseconds();
-            float moneyTime = timeMoney.getElapsedTime().asSeconds();
-
-            clock.restart();
-            time = time / 800;
-
-            handleEvents();
-
-            // Create a background
-            createBack(window);
-
-            window.setSize(sf::Vector2u(1920, 1080));
-            window.display();
-        }
+        levels[5]->display();               // Rooftop Rampage
         break;
     default:
         break;

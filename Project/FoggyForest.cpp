@@ -1,30 +1,30 @@
-#include "BeginnersGarden.h"
+#include "FoggyForest.h"
 
 
-BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
+FoggyForest::FoggyForest(RenderWindow& window) : Levels(window)
 {
     // Load background image for BeginnersGarden
-    backgroundimage.loadFromFile("../Images/BeginnersGarden.png");
+    backgroundimage.loadFromFile("../Images/FoggyForest.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
 }
 
-void BeginnersGarden::draw()
+void FoggyForest::draw()
 {
     window.draw(backgroundSprite);
 }
 
-int BeginnersGarden::display()
+int FoggyForest::display()
 {
     while (window.isOpen()) {
-        // Handle events specific to BeginnersGarden
+        // Handle events specific to FoggyForest
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        draw(); // Draw the BeginnersGarden
+        draw(); // Draw the ZombiesOutskirts
         window.display();
         //
     }

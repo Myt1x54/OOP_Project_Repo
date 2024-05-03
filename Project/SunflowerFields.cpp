@@ -1,30 +1,30 @@
-#include "BeginnersGarden.h"
+#include "SunflowerFields.h"
 
 
-BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
+SunflowerFields::SunflowerFields(RenderWindow& window) : Levels(window)
 {
     // Load background image for BeginnersGarden
-    backgroundimage.loadFromFile("../Images/BeginnersGarden.png");
+    backgroundimage.loadFromFile("../Images/SunflowerField.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
 }
 
-void BeginnersGarden::draw()
+void SunflowerFields::draw()
 {
     window.draw(backgroundSprite);
 }
 
-int BeginnersGarden::display()
+int SunflowerFields::display()
 {
     while (window.isOpen()) {
-        // Handle events specific to BeginnersGarden
+        // Handle events specific to SunflowerFields
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        draw(); // Draw the BeginnersGarden
+        draw(); // Draw the ZombiesOutskirts
         window.display();
         //
     }
