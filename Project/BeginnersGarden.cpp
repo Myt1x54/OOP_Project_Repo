@@ -27,6 +27,7 @@ int BeginnersGarden::display()
 
         draw(); // Draw the BeginnersGarden
         window.display();
+        //
     }
 
     return -1; // Indicate no option selected
