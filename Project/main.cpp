@@ -245,6 +245,7 @@
 #include "MainMenu.h"
 #include "StagesScreen.h"
 #include "Game.h"
+#include "Plant.h"
 using namespace sf;
 using namespace std;
 
@@ -256,9 +257,9 @@ struct coordinats {
 int main()
 {
 	 
+	
 	// Create a window, n* n
 	RenderWindow window(VideoMode::getFullscreenModes()[0], "Plants Vs Zombies", Style::Fullscreen);
-
 	//Game icon
 	Image icon;
 	if (!icon.loadFromFile("../Images/icon.png"))

@@ -4,6 +4,13 @@
 using namespace std;
 using namespace sf;
 #include "Levels.h"
+#include "Plant.h"
+#include "Peashooter.h"
+#include "Sunflower.h"
+#include "Repeater.h"
+#include "Wallnut.h"
+#include "SnowPea.h"
+#include "CherryBomb.h"
 class BeginnersGarden : public Levels
 {
 public:

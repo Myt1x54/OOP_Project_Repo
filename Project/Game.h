@@ -10,6 +10,8 @@
 #include "FoggyForest.h"
 #include "NighttimeSiege.h"
 #include "RooftopRampage.h"
+#include "Plant.h"
+#include "Peashooter.h"
 class Game
 {
 private:
