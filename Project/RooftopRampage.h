@@ -12,5 +12,7 @@ public:
 	void draw() override;
 
 	int display() override;
+
+	~RooftopRampage();
 };
 
