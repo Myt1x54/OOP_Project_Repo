@@ -48,12 +48,12 @@ int BeginnersGarden::display()
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     // Check if the player clicked on the plant icon
-                    if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 217 && mousePosition.y <= 329)
+                    if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 217 && mousePosition.y <= 329 && !shovel)
                     {
                         // Set the selected plant type based on the icon clicked
                         selectedPlantType = 1;
                     }
-                    else if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 355 && mousePosition.y <= 470)
+                    else if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 355 && mousePosition.y <= 470 && !shovel)
                     {
                         // Set the selected plant type based on the icon clicked
                         selectedPlantType = 0;
@@ -76,7 +76,16 @@ int BeginnersGarden::display()
                         if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 25 && mousePosition.y <= 129)
                         {
                             // Set the selected plant type based on the icon clicked
-                            shovel = true;
+                            if (shovel)
+                            {
+                                shovel = false;
+                                selectedPlantType = -1;
+                            }
+                            else
+                            {
+                                shovel = true;
+                                selectedPlantType = -1;
+                            }
                         }
                         if (shovel) 
                         {   // If shovel is selected
@@ -103,16 +112,26 @@ int BeginnersGarden::display()
                        else if (selectedPlantType != -1 && i < 45 && !shovel)
                         {
 
+                            bool insideGrid = false;
+
                             const float horizontalDistance = (1870 - 480) / 9.0f;
                             const float verticalDistance = (1034 - 125) / 5.0f;
 
-                            // Calculate the row and column for the clicked position
-                            int row = std::max(0, std::min(4, static_cast<int>((event.mouseButton.y - 125) / verticalDistance)));
-                            int column = std::max(0, std::min(8, static_cast<int>((event.mouseButton.x - 480) / horizontalDistance)));
+                            // Check if the mouse click occurred inside the grid
+                            if (event.mouseButton.x >= 480 && event.mouseButton.x <= 1870 &&
+                                event.mouseButton.y >= 125 && event.mouseButton.y <= 1034) {
+                                insideGrid = true;
 
-                            // Calculate the position of the new plant based on the row and column
-                            float plantX = 420 + column * horizontalDistance + horizontalDistance / 2;
-                            float plantY = 75 + row * verticalDistance + verticalDistance / 2;
+                                // Calculate the row and column for the clicked position
+                                int row = std::max(0, std::min(4, static_cast<int>((event.mouseButton.y - 125) / verticalDistance)));
+                                int column = std::max(0, std::min(8, static_cast<int>((event.mouseButton.x - 480) / horizontalDistance)));
+
+                                // Calculate the position of the new plant based on the row and column
+                                float plantX = 420 + column * horizontalDistance + horizontalDistance / 2;
+                                float plantY = 75 + row * verticalDistance + verticalDistance / 2;
+
+                                // Now, proceed with plant placement logic here
+                            }
 
                             bool positionOccupied = false;
 
@@ -125,7 +144,7 @@ int BeginnersGarden::display()
                                 }
                             }
 
-                            if (!positionOccupied)
+                            if (!positionOccupied && insideGrid)
                             {
                                 switch (selectedPlantType)
                                 {
