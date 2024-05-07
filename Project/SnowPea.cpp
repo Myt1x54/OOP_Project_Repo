@@ -14,6 +14,11 @@ void SnowPea::setPosition(float x, float y)
     plantSprite.setPosition(x, y);
 }
 
+sf::Vector2f SnowPea::getPosition() const
+{
+    return plantSprite.getPosition();
+}
+
 void SnowPea::shootPea()
 {
     // will implement later

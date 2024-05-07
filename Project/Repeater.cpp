@@ -14,6 +14,11 @@ void Repeater::setPosition(float x, float y)
     plantSprite.setPosition(x, y);
 }
 
+sf::Vector2f Repeater::getPosition() const
+{
+    return plantSprite.getPosition();
+}
+
 void Repeater::shootPea()
 {
     // will implement later

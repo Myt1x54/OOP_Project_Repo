@@ -13,6 +13,11 @@ void CherryBomb::setPosition(float x, float y)
     plantSprite.setPosition(x, y);
 }
 
+sf::Vector2f CherryBomb::getPosition() const
+{
+    return plantSprite.getPosition();
+}
+
 void CherryBomb::Blast()
 {
     // will implement later

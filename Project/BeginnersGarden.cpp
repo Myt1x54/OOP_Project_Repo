@@ -25,7 +25,8 @@ int BeginnersGarden::display()
     
     bool shovel = false;
     
-    for (int i = 0; i < 45; ++i) {
+    for (int i = 0; i < 45; ++i) 
+    {
         plant[i] = nullptr;
     }
     
@@ -184,7 +185,8 @@ int BeginnersGarden::display()
 BeginnersGarden::~BeginnersGarden()
 {
     // Deallocate memory for plant
-    for (int i = 0; i < 45; ++i) {
+    for (int i = 0; i < 45; ++i) 
+    {
         delete plant[i];
     }
     delete[] plant;
