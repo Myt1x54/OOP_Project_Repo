@@ -13,6 +13,11 @@ void Peashooter::setPosition(float x, float y)
     plantSprite.setPosition(x, y);
 }
 
+sf::Vector2f Peashooter::getPosition() const
+{
+    return plantSprite.getPosition();
+}
+
 void Peashooter::shootPea()
 {
     // will implement later

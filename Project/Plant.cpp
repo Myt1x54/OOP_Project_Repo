@@ -1,36 +1,29 @@
 #include "Plant.h"
 
-
-Plant::Plant(int newCost, int newHealth, int newAttackDamage, RenderWindow& window) : window(window)
+Plant::Plant() : PlantFactory(0, 0, 0, window)
 {
-	cost = newCost;
-	health = newHealth;
-	attackDamage = newAttackDamage;
+
 }
 
-void Plant::setCost(int newCost)
+
+Plant::Plant(int newCost, int newHealth, int newAttackDamage, RenderWindow& window) : PlantFactory(newCost, newHealth, newAttackDamage, window)
 {
-	cost = newCost;
-}
-void Plant::setHealth(int newHealth)
-{
-	health = newHealth;
-}
-void Plant::setAttackDamage(int newAttackDamage)
-{
-	attackDamage = newAttackDamage;
+	
 }
 
-int Plant::getCost() const
+sf::Vector2f Plant::getPosition() const
 {
-	return cost;
-}
-int Plant::getHealth() const
-{
-	return health;
-}
-int Plant::getAttackDamage() const
-{
-	return attackDamage;
+	// do nothing
+	return sf::Vector2f(1000000, 1000000);
 }
 
+
+void Plant::draw()
+{
+	// nothing to draw here
+}
+
+void Plant::setPosition(float x, float y)
+{
+	// nothing to set here
+}

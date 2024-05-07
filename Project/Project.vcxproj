@@ -149,6 +149,7 @@
     <ClCompile Include="NighttimeSiege.cpp" />
     <ClCompile Include="Peashooter.cpp" />
     <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="PlantFactory.cpp" />
     <ClCompile Include="Repeater.cpp" />
     <ClCompile Include="RooftopRampage.cpp" />
     <ClCompile Include="SnowPea.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="NighttimeSiege.h" />
     <ClInclude Include="Peashooter.h" />
     <ClInclude Include="Plant.h" />
+    <ClInclude Include="PlantFactory.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="RooftopRampage.h" />
     <ClInclude Include="SnowPea.h" />

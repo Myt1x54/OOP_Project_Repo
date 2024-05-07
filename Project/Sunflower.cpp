@@ -14,6 +14,11 @@ void Sunflower::setPosition(float x, float y)
     plantSprite.setPosition(x, y);
 }
 
+sf::Vector2f Sunflower::getPosition() const
+{
+    return plantSprite.getPosition();
+}
+
 void Sunflower::generateSun()
 {
     // will do later

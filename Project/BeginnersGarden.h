@@ -4,6 +4,7 @@
 using namespace std;
 using namespace sf;
 #include "Levels.h"
+#include "PlantFactory.h"
 #include "Plant.h"
 #include "Peashooter.h"
 #include "Sunflower.h"
@@ -19,5 +20,7 @@ public:
 	void draw() override;
 
 	int display() override;
+
+	~BeginnersGarden();
 };
 

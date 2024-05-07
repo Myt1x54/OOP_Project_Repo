@@ -13,6 +13,8 @@ public:
 
 	void setPosition(float x, float y);
 
+	sf::Vector2f getPosition() const;
+
 	void shootPea();
 };
 

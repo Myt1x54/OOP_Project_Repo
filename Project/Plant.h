@@ -1,31 +1,20 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "PlantFactory.h"
 using namespace std;
 using namespace sf;
-class Plant
+class Plant : public PlantFactory
 {
-protected:
-	int cost;
-	int health;
-	int attackDamage;
-	sf::RenderWindow& window;
-	sf::Image plantImage;
-	sf::Texture plantTexture;
-	sf::Sprite plantSprite;
 public:
+	Plant();
+
 	Plant(int newCost, int newHealth, int newAttackDamage, sf::RenderWindow& window);
 
-	void setCost(int newCost);
-	void setHealth(int newHealth);
-	void setAttackDamage(int newAttackDamage);
+	virtual void setPosition(float x, float y);
 
-	int getCost() const;
-	int getHealth() const;
-	int getAttackDamage() const;
+	virtual sf::Vector2f getPosition() const;
 
-	virtual void setPosition(float x, float y) = 0;
-
-	virtual void draw() = 0;
+	virtual void draw();
 
 	//virtual int Display() = 0;
 
