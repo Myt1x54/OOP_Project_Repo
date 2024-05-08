@@ -168,6 +168,50 @@ int BeginnersGarden::display()
                 }
             }
         }
+        if (shovel)
+        {
+            window.setMouseCursorVisible(false);
+            sf::Texture mouseTexture;
+            sf::Sprite mouseSprite;
+            mouseTexture.loadFromFile("../Images/Shovel.png");
+            mouseSprite.setTexture(mouseTexture);
+
+            mouseSprite.setPosition(mousePosition.x, mousePosition.y);
+            
+           
+            window.draw(mouseSprite);
+        }
+        else if (selectedPlantType == 0)                // Peashooter
+        { 
+            window.setMouseCursorVisible(false);
+            sf::Texture mouseTexture;
+            sf::Sprite mouseSprite;
+            mouseTexture.loadFromFile("../Images/PeaShooterSprite.png");
+            mouseSprite.setTexture(mouseTexture);
+
+            mouseSprite.setPosition(mousePosition.x, mousePosition.y);
+            window.draw(mouseSprite);
+        }
+            
+        else if (selectedPlantType == 1)                // Sunflower
+        {
+            window.setMouseCursorVisible(false);        
+            sf::Texture mouseTexture;
+            sf::Sprite mouseSprite;
+            mouseTexture.loadFromFile("../Images/SunflowerSprite.png");
+            mouseSprite.setTexture(mouseTexture);
+
+            mouseSprite.setPosition(mousePosition.x, mousePosition.y);
+            window.draw(mouseSprite);
+        }
+        else
+        {
+            window.setMouseCursorVisible(true);
+        }
+        
+
+
+
         for (int i = 0; i < 45; i++)
         {
             if (plant[i] != nullptr)
