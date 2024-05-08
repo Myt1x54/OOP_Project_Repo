@@ -76,12 +76,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -93,14 +93,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -110,12 +110,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -127,14 +127,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Abdul Moiz\Desktop\OOP_Project\Project\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Study\University\Semester 2\Object Oriented Programming\Assignment 1\oop_project\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
