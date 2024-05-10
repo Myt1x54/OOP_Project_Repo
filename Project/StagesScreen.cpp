@@ -17,6 +17,7 @@ void StagesScreen::draw()
 }
 int StagesScreen::handleInput()
 {   
+    bool mouse = 0;
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         mousePosition = sf::Mouse::getPosition(window);
@@ -57,9 +58,15 @@ int StagesScreen::handleInput()
             selectedOption = 5;
             return selectedOption;
         }
+        else if (mousePosition.x >= 0 && mousePosition.x <= 14 && mousePosition.y >= 0 && mousePosition.y <= 100)
+        {
+            selectedOption = 6;
+            return selectedOption;
+        }
         isMouseClicked = false;
         return selectedOption;
     }
+    
     return -1;
 }
 int StagesScreen::display(sf::RenderWindow& window, StagesScreen& stages)
@@ -79,10 +86,13 @@ int StagesScreen::display(sf::RenderWindow& window, StagesScreen& stages)
         window.display();
 
         // Handle input
-        int selectedOption = stages.handleInput();
-        if (selectedOption >= 0)
+       
+        int selectedOption2 = stages.handleInput();
+        
+        if (selectedOption2 >= 0)
         {
-            return selectedOption; // Return the selected option
+            selectedOption = -1;
+            return selectedOption2; // Return the selected option
         }
     }
     return -1; // Indicate no option selected

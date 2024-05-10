@@ -173,10 +173,11 @@ int BeginnersGarden::display()
             window.setMouseCursorVisible(false);
             sf::Texture mouseTexture;
             sf::Sprite mouseSprite;
-            mouseTexture.loadFromFile("../Images/Shovel.png");
+            mouseTexture.loadFromFile("../Images/Shovel2.png");
             mouseSprite.setTexture(mouseTexture);
 
-            mouseSprite.setPosition(mousePosition.x, mousePosition.y);
+
+            mouseSprite.setPosition(mousePosition.x - 90, mousePosition.y - 90);
             
            
             window.draw(mouseSprite);
@@ -189,7 +190,7 @@ int BeginnersGarden::display()
             mouseTexture.loadFromFile("../Images/PeaShooterSprite.png");
             mouseSprite.setTexture(mouseTexture);
 
-            mouseSprite.setPosition(mousePosition.x, mousePosition.y);
+            mouseSprite.setPosition(mousePosition.x - 40, mousePosition.y - 80);
             window.draw(mouseSprite);
         }
             
@@ -201,7 +202,7 @@ int BeginnersGarden::display()
             mouseTexture.loadFromFile("../Images/SunflowerSprite.png");
             mouseSprite.setTexture(mouseTexture);
 
-            mouseSprite.setPosition(mousePosition.x, mousePosition.y);
+            mouseSprite.setPosition(mousePosition.x - 70, mousePosition.y - 80);
             window.draw(mouseSprite);
         }
         else

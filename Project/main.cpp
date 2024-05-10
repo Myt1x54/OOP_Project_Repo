@@ -269,8 +269,10 @@ int main()
 	window.setIcon(32, 32, icon.getPixelsPtr());
 
 
-	Game game(window);
-	game.run();
+	Game* game = new Game(window);
+	game->run();
+
+	delete game;
 	return 0;
 }
 
