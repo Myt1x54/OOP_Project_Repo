@@ -22,7 +22,7 @@ Game::Game(sf::RenderWindow& window) : window(window)
 {
     mainMenu = new MainMenu(window);
     startScreen = new StartScreen(window);
-    stagesScreen = mainMenu->getStageScreen();
+    stagesScreen = new StagesScreen(window);
     currentScreen = 0;
 }
 
@@ -88,7 +88,7 @@ void Game::runStagesScreen()
     levels[4] = new NighttimeSiege(window);
     levels[5] = new RooftopRampage(window);
 
-    
+
 
 
 
@@ -113,6 +113,11 @@ void Game::runStagesScreen()
     case 5:
         levels[5]->display();               // Rooftop Rampage
         break;
+    case 6:
+        currentScreen = 1; // Switch to Main Menu
+        delete stagesScreen; // Close the stage screen
+        stagesScreen = new StagesScreen(window); // Recreate the stage screen for next use
+        return; // Exit the function and return to the main loop
     default:
         break;
     }

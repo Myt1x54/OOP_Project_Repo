@@ -71,7 +71,6 @@ MainMenu::MainMenu(sf::RenderWindow& window) : window(window), isMouseClicked(fa
     // Load menu image
     menuTexture.loadFromFile("../Images/StartMenu.png");
     menuSprite.setTexture(menuTexture);
-    stageScreen = new StagesScreen(window);
     selectedOption = -1;
 }
 
@@ -82,6 +81,7 @@ void MainMenu::draw()
 
 int MainMenu::handleInput()
 {
+    bool mouse = 0;
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         mousePosition = sf::Mouse::getPosition(window);
@@ -135,16 +135,14 @@ int MainMenu::display(sf::RenderWindow& window, MainMenu& menu)
         window.display();
 
         // Handle input
-        int selectedOption = menu.handleInput();
-        if (selectedOption >= 0)
+        int selectedOption2 = menu.handleInput();
+        if (selectedOption2 >= 0)
         {
-            return selectedOption; // Return the selected option
+            selectedOption = -1;
+            return selectedOption2; // Return the selected option
         }
     }
     return -1; // Indicate no option selected
 }
 
-StagesScreen* MainMenu::getStageScreen()
-{
-    return stageScreen;
-}
+
