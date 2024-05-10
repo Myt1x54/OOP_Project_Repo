@@ -72,6 +72,9 @@ void Game::runMainMenu()
     case 2: // Show scoreboard
         // Display scoreboard
         break;
+    case 3: // Show scoreboard
+        window.close();
+        break;
     default:
         break;
     }

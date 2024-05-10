@@ -9,6 +9,9 @@
 #include "Wallnut.h"
 #include "SnowPea.h"
 #include "CherryBomb.h"
+#include "ZombieFactory.h"
+#include "Zombie.h"
+#include "SimpleZombie.h"
 using namespace std;
 using namespace sf;
 class Levels
@@ -20,6 +23,7 @@ protected:
     sf::Sprite backgroundSprite;
     PlantFactory** plant;
 	GameTime* gameTime;
+    ZombieFactory** zombie;
 public:
     Levels(RenderWindow& window);
 

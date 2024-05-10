@@ -26,3 +26,8 @@ void Zombie::draw()
 {
 
 }
+
+void Zombie::Move()
+{
+	
+}

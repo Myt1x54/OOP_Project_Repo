@@ -108,6 +108,12 @@ int MainMenu::handleInput()
             isMouseClicked = false;
             return selectedOption;
         }
+        else if (mousePosition.x >= 1865 && mousePosition.x <= 1919 && mousePosition.y >= 0 && mousePosition.y <= 50)
+        {
+            selectedOption = 3;
+            isMouseClicked = false;
+            return selectedOption;
+        }
         isMouseClicked = false;
         if (isMouseClicked == false)
         {

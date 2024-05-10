@@ -26,3 +26,13 @@ void Plant::setPosition(float x, float y)
 {
 	// nothing to set here
 }
+
+void Plant::shootPea()
+{
+	// do nothing
+}
+
+void Plant::update()
+{
+	// do nothing
+}

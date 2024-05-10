@@ -16,6 +16,10 @@ public:
 
 	virtual void draw();
 
+	virtual void shootPea();
+
+	virtual void update();
+
 	//virtual int Display() = 0;
 
 

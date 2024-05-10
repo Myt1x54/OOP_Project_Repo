@@ -1,4 +1,6 @@
 #include<iostream>
+#include <cstdlib> 
+#include <ctime>   
 #include "BeginnersGarden.h"
 using namespace std;
 
@@ -10,6 +12,8 @@ BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
     plant = new PlantFactory*[45];
+    zombie = new ZombieFactory*[25];
+    gameTime = new GameTime;
 }
 
 void BeginnersGarden::draw()
@@ -19,6 +23,7 @@ void BeginnersGarden::draw()
 
 int BeginnersGarden::display()
 {
+    srand(static_cast<unsigned int>(time(nullptr)));
     sf::Vector2i mousePosition;
 
     int selectedPlantType = -1;
@@ -29,11 +34,34 @@ int BeginnersGarden::display()
     {
         plant[i] = nullptr;
     }
+
+    for (int i = 0; i < 25; ++i)
+    {
+        zombie[i] = nullptr;
+    }
+
+    float count = 0;
+
+    float spawnTime = 7.0f; // Time interval between zombie spawns ranges from 2 to 10 seconds
+    float timeSinceSpawn = 0.0f;
+    int zombieCount = 0; // Track the number of zombies spawned
+
     
      int i = 0;
     while (window.isOpen()) 
     {
-        
+        // Get elapsed time since last frame
+        float elapsedTime = gameTime->getElapsedTime();
+        gameTime->restartClock(); // Restart the clock for the next frame
+
+        // Update time since last spawn
+        timeSinceSpawn += elapsedTime;
+       
+
+
+
+
+        count = 0;
         /// Get the current mouse position relative to the window
         mousePosition = sf::Mouse::getPosition(window);
 
@@ -168,6 +196,37 @@ int BeginnersGarden::display()
                 }
             }
         }
+
+
+        if (timeSinceSpawn >= spawnTime && zombieCount < 25)
+        {
+            // Use the ZombieFactory to create a new zombie instance
+            ZombieFactory* newZombie = nullptr;
+
+            // Decide which type of zombie to create based on your game logic
+            // For example, you might randomly choose between different types of zombies
+            // Here, let's create a SimpleZombie
+            newZombie = new SimpleZombie(100, 10, window);
+
+            // Calculate the Y-position for the zombie
+            // Here, I'm assuming each row has a fixed height of 100 pixels, adjust as needed
+            int randomRow = rand() % 5; // Choose a random row index between 0 and 4
+            const float verticalDistance = (1034 - 125) / 5.0f;
+
+            float zombieY = 30 + randomRow * verticalDistance + verticalDistance / 2;
+
+            // Set the position of the zombie
+            newZombie->setPosition(1900 + (rand() + 1) % 100, zombieY);
+
+            // Add the zombie to the zombie array
+            zombie[zombieCount++] = newZombie;
+
+            // Reset the spawn timer
+            timeSinceSpawn = 0.0f;
+        }
+
+
+
         if (shovel)
         {
             window.setMouseCursorVisible(false);
@@ -210,15 +269,28 @@ int BeginnersGarden::display()
             window.setMouseCursorVisible(true);
         }
         
-
-
+        for (int i = 0; i < 25; ++i)
+        {
+            if (zombie[i] != nullptr)
+            {
+                zombie[i]->draw();
+                zombie[i]->Move();
+                // Update zombie positions and handle other zombie logic...
+            }
+        }
+        
 
         for (int i = 0; i < 45; i++)
         {
             if (plant[i] != nullptr)
             {
                 plant[i]->draw();
+                if (dynamic_cast<Peashooter*>(plant[i]) != nullptr)
+                {
+                    plant[i]->shootPea();
+                }
             }
+           
         }
         window.display();
         
@@ -235,5 +307,11 @@ BeginnersGarden::~BeginnersGarden()
         delete plant[i];
     }
     delete[] plant;
+
+    for (int i = 0; i < 25; ++i)
+    {
+        delete zombie[i];
+    }
+    delete[] zombie;
 }
                 

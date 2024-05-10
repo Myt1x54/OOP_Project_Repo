@@ -25,7 +25,7 @@ int StagesScreen::handleInput()
     }
     if (isMouseClicked)
     {
-        sf::sleep(sf::milliseconds(400)); // Adjust the delay as needed
+        sf::sleep(sf::milliseconds(100)); // Adjust the delay as needed
 
         if (mousePosition.x >= 15 && mousePosition.x <= 625 && mousePosition.y >= 13 && mousePosition.y <= 500)
         {

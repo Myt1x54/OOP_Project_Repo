@@ -12,6 +12,9 @@ using namespace sf;
 #include "Wallnut.h"
 #include "SnowPea.h"
 #include "CherryBomb.h"
+#include "ZombieFactory.h"
+#include "Zombie.h"
+#include "SimpleZombie.h"
 class BeginnersGarden : public Levels
 {
 public:
