@@ -78,6 +78,27 @@
     <ClCompile Include="PlantFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ZombieFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleZombie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyingZombie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FootballZombie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DancingZombie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DolphinRiderZombie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StartScreen.h">
@@ -138,6 +159,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlantFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZombieFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleZombie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingZombie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FootballZombie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DancingZombie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DolphinRiderZombie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
