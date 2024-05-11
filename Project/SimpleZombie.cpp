@@ -24,7 +24,7 @@ void SimpleZombie::draw()
 {
     window.draw(zombieSprite);
 }
-//comment
+//commentagain
 void SimpleZombie::Move()
 {
     sf::Vector2f zombie = getPosition();
