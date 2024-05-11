@@ -25,13 +25,12 @@ void SimpleZombie::draw()
 {
     window.draw(zombieSprite);
 }
-
+//commentagain
 void SimpleZombie::Move()
 {
     sf::Vector2f zombie = getPosition();
     setPosition(zombie.x - 0.5f, zombie.y);
 }
-
 
 void SimpleZombie::DeleteZombie()
 {
