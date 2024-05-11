@@ -24,6 +24,8 @@ public:
 
 	int display() override;
 
+	void setCurrency(int value);
+
 	~BeginnersGarden();
 };
 

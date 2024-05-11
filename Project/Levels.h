@@ -24,6 +24,9 @@ protected:
     PlantFactory** plant;
 	GameTime* gameTime;
     ZombieFactory** zombie;
+    int currency;
+    sf::Font font;
+    sf::Text currencyText;
 public:
     Levels(RenderWindow& window);
 
@@ -32,5 +35,7 @@ public:
 
     virtual void draw() = 0;
     virtual int display() = 0;
+    virtual void setCurrency(int value) = 0;
+
 };
 

@@ -7,12 +7,18 @@ FoggyForest::FoggyForest(RenderWindow& window) : Levels(window)
     backgroundimage.loadFromFile("../Images/FoggyForest.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
+    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load your font file
+    currencyText.setFont(font);
+    currencyText.setCharacterSize(24);
+    currencyText.setFillColor(sf::Color::White);
+    currencyText.setPosition(356, 65); // Adjust position as needed
     plant = new PlantFactory * [45];
 }
 
 void FoggyForest::draw()
 {
     window.draw(backgroundSprite);
+    window.draw(currencyText);
 }
 
 int FoggyForest::display()
@@ -214,6 +220,12 @@ int FoggyForest::display()
     }
 
     return -1; // Indicate no option selected
+}
+
+void FoggyForest::setCurrency(int value)
+{
+    currency = value;
+    currencyText.setString("Currency: " + std::to_string(currency));
 }
 
 FoggyForest::~FoggyForest()

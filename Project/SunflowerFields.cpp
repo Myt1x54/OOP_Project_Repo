@@ -7,12 +7,19 @@ SunflowerFields::SunflowerFields(RenderWindow& window) : Levels(window)
     backgroundimage.loadFromFile("../Images/SunflowerField.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
+    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load your font file
+    currencyText.setFont(font);
+    currencyText.setCharacterSize(24);
+    currencyText.setFillColor(sf::Color::White);
+    currencyText.setPosition(356, 65); // Adjust position as needed
+
     plant = new PlantFactory * [45];
 }
 
 void SunflowerFields::draw()
 {
     window.draw(backgroundSprite);
+    window.draw(currencyText);
 }
 
 int SunflowerFields::display()
@@ -214,6 +221,12 @@ int SunflowerFields::display()
     }
 
     return -1; // Indicate no option selected
+}
+
+void SunflowerFields::setCurrency(int value)
+{
+    currency = value;
+    currencyText.setString("Currency: " + std::to_string(currency));
 }
 
 SunflowerFields::~SunflowerFields()

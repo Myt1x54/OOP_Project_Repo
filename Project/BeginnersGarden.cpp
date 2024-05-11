@@ -7,18 +7,29 @@ using namespace std;
 
 BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
 {
+
     // Load background image for BeginnersGarden
     backgroundimage.loadFromFile("../Images/BeginnersGarden.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
+    currency = 500;
+    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load your font file
+    currencyText.setFont(font);
+    currencyText.setCharacterSize(24);
+    currencyText.setFillColor(sf::Color::White);
+    currencyText.setPosition(300, 50); // Adjust position as needed
+
+
     plant = new PlantFactory*[45];
-    zombie = new ZombieFactory*[25];
+    zombie = new ZombieFactory*[5];
     gameTime = new GameTime;
 }
 
 void BeginnersGarden::draw()
 {
     window.draw(backgroundSprite);
+    setCurrency(0);
+    window.draw(currencyText);
 }
 
 int BeginnersGarden::display()
@@ -35,14 +46,14 @@ int BeginnersGarden::display()
         plant[i] = nullptr;
     }
 
-    for (int i = 0; i < 25; ++i)
+    for (int i = 0; i < 5; ++i)
     {
         zombie[i] = nullptr;
     }
 
     float count = 0;
 
-    float spawnTime = 7.0f; // Time interval between zombie spawns ranges from 2 to 10 seconds
+    float spawnTime = 15.0f; // Time interval between zombie spawns 15 seconds
     float timeSinceSpawn = 0.0f;
     int zombieCount = 0; // Track the number of zombies spawned
 
@@ -77,12 +88,12 @@ int BeginnersGarden::display()
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     // Check if the player clicked on the plant icon
-                    if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 217 && mousePosition.y <= 329 && !shovel)
+                    if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 217 && mousePosition.y <= 329 && !shovel && currency >= 100)
                     {
                         // Set the selected plant type based on the icon clicked
                         selectedPlantType = 1;
                     }
-                    else if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 355 && mousePosition.y <= 470 && !shovel)
+                    else if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 355 && mousePosition.y <= 470 && !shovel && currency >= 100)
                     {
                         // Set the selected plant type based on the icon clicked
                         selectedPlantType = 0;
@@ -178,13 +189,16 @@ int BeginnersGarden::display()
                                 switch (selectedPlantType)
                                 {
                                 case 0: // Peashooter
-                                    plant[i] = new Peashooter(100, 125, 25, window);
-                                    selectedPlantType = -1;
-                                    break;
+                                        plant[i] = new Peashooter(100, 125, 25, window);
+                                        currency -= 100;
+                                        selectedPlantType = -1;
+                                        break;
+                                    
                                 case 1: // Sunflower
-                                    plant[i] = new Sunflower(100, 125, 25, window);
-                                    selectedPlantType = -1;
-                                    break;
+                                        plant[i] = new Sunflower(100, 125, 25, window);
+                                        currency -= 100;
+                                        selectedPlantType = -1;
+                                        break;
                                     // Add cases for other plant types
                                 }
                                 // Set the position of the new plant
@@ -198,8 +212,9 @@ int BeginnersGarden::display()
         }
 
 
-        if (timeSinceSpawn >= spawnTime && zombieCount < 25)
+        if (timeSinceSpawn >= spawnTime && zombieCount < 5)
         {
+            cout << "moiz" << endl;
             // Use the ZombieFactory to create a new zombie instance
             ZombieFactory* newZombie = nullptr;
 
@@ -269,12 +284,17 @@ int BeginnersGarden::display()
             window.setMouseCursorVisible(true);
         }
         
-        for (int i = 0; i < 25; ++i)
+        for (int i = 0; i < 5; ++i)
         {
             if (zombie[i] != nullptr)
             {
                 zombie[i]->draw();
                 zombie[i]->Move();
+                sf::Vector2f zomposition = zombie[i]->getPosition();
+                if (zomposition.x <= 370 && zomposition.y >= 100 && zomposition.x <= 370 && zomposition.y <= 1031)
+                {
+                    zombie[i]->DeleteZombie();
+                }
                 // Update zombie positions and handle other zombie logic...
             }
         }
@@ -299,6 +319,11 @@ int BeginnersGarden::display()
     return -1; // Indicate no option selected
 }
 
+void BeginnersGarden::setCurrency(int value)
+{
+    currencyText.setString(std::to_string(currency));
+}
+
 BeginnersGarden::~BeginnersGarden()
 {
     // Deallocate memory for plant
@@ -308,7 +333,7 @@ BeginnersGarden::~BeginnersGarden()
     }
     delete[] plant;
 
-    for (int i = 0; i < 25; ++i)
+    for (int i = 0; i < 5; ++i)
     {
         delete zombie[i];
     }

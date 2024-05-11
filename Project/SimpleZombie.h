@@ -14,5 +14,7 @@ public:
 	sf::Vector2f getPosition() const;
 
 	void Move();
+
+	void DeleteZombie();
 };
 

@@ -8,12 +8,18 @@ ZombieOutskirts::ZombieOutskirts(RenderWindow& window) : Levels(window)
     backgroundimage.loadFromFile("../Images/ZombieOutskirts.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
+    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load your font file
+    currencyText.setFont(font);
+    currencyText.setCharacterSize(24);
+    currencyText.setFillColor(sf::Color::White);
+    currencyText.setPosition(356, 65); // Adjust position as needed
     plant = new PlantFactory * [45];
 }
 
 void ZombieOutskirts::draw()
 {
     window.draw(backgroundSprite);
+    window.draw(currencyText);
 }
 
 int ZombieOutskirts::display()
@@ -197,6 +203,12 @@ int ZombieOutskirts::display()
     }
 
     return -1; // Indicate no option selected
+}
+
+void ZombieOutskirts::setCurrency(int value)
+{
+    currency = value;
+    currencyText.setString("Currency: " + std::to_string(currency));
 }
 
 ZombieOutskirts::~ZombieOutskirts()

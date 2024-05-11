@@ -1,4 +1,6 @@
 #include "SimpleZombie.h"
+#include <cstdlib> 
+#include <ctime>   
 
 SimpleZombie::SimpleZombie(int newHealth, int newAttackDamage, sf::RenderWindow& window) : Zombie(newHealth, newAttackDamage, window)
 {
@@ -26,4 +28,17 @@ void SimpleZombie::draw()
 void SimpleZombie::Move()
 {
     zombieSprite.move(-0.5f, 0.0f);
+}
+
+
+void SimpleZombie::DeleteZombie()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    int randomRow = rand() % 5; // Choose a random row index between 0 and 4
+    const float verticalDistance = (1034 - 125) / 5.0f;
+
+    float zombieY = 30 + randomRow * verticalDistance + verticalDistance / 2;
+
+    // Set the position of the zombie
+    zombieSprite.setPosition(1900 + (rand() + 900) % 1500, zombieY);
 }

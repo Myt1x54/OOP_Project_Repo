@@ -23,6 +23,8 @@ public:
     virtual void setPosition(float x, float y) = 0;
     virtual sf::Vector2f getPosition() const = 0;
 
+    virtual void DeleteZombie() = 0;
+
     virtual void draw() = 0;
 
     virtual void Move() = 0;

@@ -13,6 +13,8 @@ public:
 
     virtual sf::Vector2f getPosition() const;
 
+    virtual void DeleteZombie();
+
     virtual void draw();
 
     virtual void Move();
