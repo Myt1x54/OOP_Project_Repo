@@ -16,9 +16,15 @@ public:
 
 	virtual void draw();
 
-	virtual void shootPea();
+	virtual void shootPea(ZombieFactory** zombie);
 
 	virtual void update();
+
+	virtual void generateSun();
+
+	virtual void setCurrency(int& currency);
+
+	virtual bool isClicked(sf::Vector2f mousePosition);
 
 	//virtual int Display() = 0;
 

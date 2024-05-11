@@ -24,10 +24,10 @@ sf::Vector2f Peashooter::getPosition() const
 
 void Peashooter::update()
 {
-    shootPea();
+    // nothing
 }
 
-void Peashooter::shootPea()
+void Peashooter::shootPea(ZombieFactory** zombie)
 {
     if (greenPea != nullptr)
     {
@@ -46,6 +46,24 @@ void Peashooter::shootPea()
 
         // Draw the GreenPea
         greenPea->draw();
+
+        // Check for collision with each zombie
+        for (int i = 0; i < 5; ++i)
+        {
+            if (zombie[i] != nullptr)
+            {
+                if (zombie[i]->checkCollision(pea))
+                {
+                    // Reset the position of the pea
+                    greenPea->setPosition(peaPosition.x + 100, peaPosition.y + 10);
+                    counter = 0;
+
+                    // Increment the hit counter of the zombie
+                    zombie[i]->incrementHitCounter();
+                }
+            }
+        }
+
 
         // Update counter
         counter = counter + 2;

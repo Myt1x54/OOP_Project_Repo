@@ -18,5 +18,10 @@ public:
     virtual void draw();
 
     virtual void Move();
+
+    virtual bool checkCollision(const sf::Vector2f& position) const;
+
+    // Increment the hit counter of the zombie
+    virtual void incrementHitCounter();
 };
 

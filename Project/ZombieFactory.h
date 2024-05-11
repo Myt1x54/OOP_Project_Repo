@@ -28,5 +28,11 @@ public:
     virtual void draw() = 0;
 
     virtual void Move() = 0;
+
+    // Check if a given position collides with the zombie
+    virtual bool checkCollision(const sf::Vector2f& position) const = 0;
+
+    // Increment the hit counter of the zombie
+    virtual void incrementHitCounter() = 0;
 };
 

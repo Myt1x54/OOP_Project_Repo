@@ -36,3 +36,16 @@ void Zombie::DeleteZombie()
 {
 
 }
+
+
+bool Zombie::checkCollision(const sf::Vector2f& position) const
+{
+	// nothing
+	return 0;
+}
+
+// Increment the hit counter of the zombie
+void Zombie::incrementHitCounter()
+{
+	// nothing
+}

@@ -3,6 +3,7 @@
 #include "Pea.h"
 #include "GreenPea.h"
 #include "Plant.h"
+#include "ZombieFactory.h"
 using namespace std;
 using namespace sf;
 
@@ -20,7 +21,7 @@ public:
 
 	sf::Vector2f getPosition() const;
 
-	void shootPea();
+	void shootPea(ZombieFactory** zombie);
 
 	void update();
 

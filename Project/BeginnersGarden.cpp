@@ -13,11 +13,14 @@ BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
     currency = 500;
-    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load your font file
+    font.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load your font file
     currencyText.setFont(font);
-    currencyText.setCharacterSize(24);
-    currencyText.setFillColor(sf::Color::White);
-    currencyText.setPosition(300, 50); // Adjust position as needed
+    currencyText.setCharacterSize(50);
+    sf::Color brownColor(139, 69, 19); // RGB values for brown color
+    currencyText.setFillColor(brownColor);
+    currencyText.setOutlineColor(sf::Color::Black);
+    currencyText.setOutlineThickness(3);
+    currencyText.setPosition(320, 35); // Adjust position as needed
 
 
     plant = new PlantFactory*[45];
@@ -214,7 +217,7 @@ int BeginnersGarden::display()
 
         if (timeSinceSpawn >= spawnTime && zombieCount < 5)
         {
-            cout << "moiz" << endl;
+            
             // Use the ZombieFactory to create a new zombie instance
             ZombieFactory* newZombie = nullptr;
 
@@ -299,18 +302,40 @@ int BeginnersGarden::display()
             }
         }
         
+        // Generate suns for all sunflowers and draw them
+        for (int i = 0; i < 45; i++)
+        {
+            if (plant[i] != nullptr)
+            {
+                if (dynamic_cast<Sunflower*>(plant[i]) != nullptr)
+                {
+                    Sunflower* sunflower = dynamic_cast<Sunflower*>(plant[i]);
+                    sunflower->draw(); // Draw the sunflower (and the sun if it's ready)
+                    sunflower->generateSun(); // Generate suns for each sunflower
+                    
+                }
+            }
+        }
 
+        // Then, check for clicks on the suns
         for (int i = 0; i < 45; i++)
         {
             if (plant[i] != nullptr)
             {
                 plant[i]->draw();
-                if (dynamic_cast<Peashooter*>(plant[i]) != nullptr)
+                if (dynamic_cast<Sunflower*>(plant[i]) != nullptr)
                 {
-                    plant[i]->shootPea();
+                    // Check if the sun is clicked and add currency
+                    if (plant[i]->isClicked(static_cast<Vector2f>(mousePosition)))
+                    {
+                        plant[i]->setCurrency(currency);
+                    }
+                }
+                else if (dynamic_cast<Peashooter*>(plant[i]) != nullptr)
+                {
+                    plant[i]->shootPea(zombie);
                 }
             }
-           
         }
         window.display();
         

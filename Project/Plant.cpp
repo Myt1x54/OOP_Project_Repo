@@ -27,7 +27,7 @@ void Plant::setPosition(float x, float y)
 	// nothing to set here
 }
 
-void Plant::shootPea()
+void Plant::shootPea(ZombieFactory** zombie)
 {
 	// do nothing
 }
@@ -35,4 +35,20 @@ void Plant::shootPea()
 void Plant::update()
 {
 	// do nothing
+}
+
+void Plant::generateSun()
+{
+	// do nothing
+}
+
+void Plant::setCurrency(int& currency)
+{
+	// do nothing
+}
+
+bool Plant::isClicked(sf::Vector2f mousePosition)
+{
+	// do nothing
+	return 0;
 }

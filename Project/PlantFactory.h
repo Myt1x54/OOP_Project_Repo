@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "ZombieFactory.h"
 using namespace std;
 using namespace sf;
 class PlantFactory
@@ -30,9 +31,15 @@ public:
 
 	virtual void draw() = 0;
 
-	virtual void shootPea() = 0;
+	virtual void shootPea(ZombieFactory** zombie) = 0;
 
 	virtual void update() = 0;
+
+	virtual void generateSun() = 0;
+
+	virtual void setCurrency(int& currency) = 0;
+
+	virtual bool isClicked(sf::Vector2f mousePosition) = 0;
 
 };
 

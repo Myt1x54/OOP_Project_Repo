@@ -4,6 +4,8 @@
 
 class SimpleZombie : public Zombie
 {
+private:
+	int hitCounter;
 public:
 	SimpleZombie(int newHealth, int newAttackDamage, sf::RenderWindow& window);
 
@@ -16,5 +18,12 @@ public:
 	void Move();
 
 	void DeleteZombie();
+
+
+	// Check if a given position collides with the zombie
+	bool checkCollision(const sf::Vector2f& position) const;
+
+	// Increment the hit counter of the zombie
+	void incrementHitCounter();
 };
 
