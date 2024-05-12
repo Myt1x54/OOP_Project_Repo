@@ -109,7 +109,14 @@ void Game::runStagesScreen()
         }
         break;
     case 1:
-        levels[1]->display();               // Zombies Outskirts
+        gameover = levels[1]->display();               // Zombies Outskirts
+        if (gameover == 1)
+        {
+            currentScreen = 1; // Switch to Main Menu
+            delete stagesScreen; // Close the stage screen
+            stagesScreen = new StagesScreen(window); // Recreate the stage screen for next use
+            return; // Exit the function and return to the main loop
+        }
         break;
     case 2:
         levels[2]->display();               // Sunflower Field

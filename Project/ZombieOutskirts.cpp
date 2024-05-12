@@ -28,7 +28,7 @@ ZombieOutskirts::ZombieOutskirts(RenderWindow& window) : Levels(window)
     LivesText.setPosition(800, 420); // Adjust position as needed
     plant = new PlantFactory * [45];
     plant = new PlantFactory * [45];
-    zombie = new ZombieFactory * [10];
+    zombie = new ZombieFactory * [15];
     gameTime = new GameTime;
 }
 
@@ -41,7 +41,80 @@ void ZombieOutskirts::draw()
 
 bool ZombieOutskirts::loseLife()
 {
-    return 0;
+    lives--;
+
+    // Get the current elapsed time
+    float elapsedTime = gameTime->getElapsedTime();
+
+    // Display the "Remaining Lives" or "Game Over" text based on the remaining lives
+    if (lives > 0)
+    {
+        LivesText.setString("Remaining Lives: " + std::to_string(lives));
+    }
+    else
+    {
+        LivesText.setString("Game Over");
+        LivesText.setPosition(500, 420); // Adjust position for the new text
+
+        sf::Text continueText;
+        continueText.setFont(font);
+        continueText.setCharacterSize(100);
+        sf::Color browncontinueTextColor(139, 69, 19); // RGB values for brown color
+        continueText.setFillColor(browncontinueTextColor);
+        continueText.setOutlineColor(sf::Color::Black);
+        continueText.setOutlineThickness(3);
+        continueText.setString("Press Space to Continue to Main Menu");
+        continueText.setPosition(380, 600); // Adjust position as needed
+
+        window.draw(LivesText);
+        window.draw(continueText);
+        window.display();
+
+        // Wait for spacebar key press to continue
+        bool spacePressed = false;
+        while (!spacePressed)
+        {
+            sf::Event event;
+            while (window.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                {
+                    window.close();
+                    return true; // Indicate game over if window closed
+                }
+                else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+                {
+                    spacePressed = true;
+                }
+            }
+        }
+
+        return true; // Indicate game over after space pressed
+    }
+
+    // Draw the text
+    window.draw(LivesText);
+
+    // Update the display
+    window.display();
+
+    // Delay for a certain duration before continuing
+    float delayDuration = 3.0f; // 3 seconds
+    while (elapsedTime < delayDuration)
+    {
+        // Get the updated elapsed time
+        elapsedTime = gameTime->getElapsedTime();
+
+        // Update the window events to prevent freezing
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+    }
+
+    return false; // Indicate that the game is not over yet
 }
 
 int ZombieOutskirts::display()
