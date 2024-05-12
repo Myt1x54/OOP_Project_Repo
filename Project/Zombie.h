@@ -15,6 +15,8 @@ public:
 
     virtual void DeleteZombie();
 
+    virtual void updateSprite();
+
     virtual void draw();
 
     virtual void Move();

@@ -5,10 +5,22 @@
 SimpleZombie::SimpleZombie(int newHealth, int newAttackDamage, sf::RenderWindow& window) : Zombie(newHealth, newAttackDamage, window)
 {
     // Load sprite for simple zombie
-    zombieImage.loadFromFile("../Images/simple_zombie.png");
+    zombieImage.loadFromFile("../Images/simpleZombieAnimation.png");
     zombieTexture.loadFromImage(zombieImage);
     zombieSprite.setTexture(zombieTexture);
+    zombieSprite.setTextureRect(sf::IntRect(0, 0, frameWidth, frameHeight));
     hitCounter = 0;
+}
+
+void SimpleZombie::updateSprite() 
+{
+    if (animationClock.getElapsedTime().asSeconds() > frameDuration)
+    {
+        currentFrame = (currentFrame + 1) % frameCount;
+        int offsetX = currentFrame * frameWidth;
+        zombieSprite.setTextureRect(sf::IntRect(offsetX, 0, frameWidth, frameHeight)); // Update texture rectangle
+        animationClock.restart();
+    }
 }
 
 void SimpleZombie::setPosition(float x, float y)

@@ -9,6 +9,8 @@ private:
 public:
 	SimpleZombie(int newHealth, int newAttackDamage, sf::RenderWindow& window);
 
+	void updateSprite();
+
 	void draw();
 
 	void setPosition(float x, float y);
