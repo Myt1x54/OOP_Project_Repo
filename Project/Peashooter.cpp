@@ -32,44 +32,51 @@ void Peashooter::update()
 
 void Peashooter::shootPea(ZombieFactory** zombie)
 {
-    if (greenPea != nullptr)
+    // Check if enough time has elapsed since the last shot
+    if (generateTimer.getElapsedTime().asSeconds() >= 2.0f) // Adjust the reload time here (2.0f represents 2 seconds)
     {
-        // Create a new GreenPea instance
-
-        // Set its position
-        sf::Vector2f peaPosition = plantSprite.getPosition();
-        greenPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10); // Set initial position
-
-        sf::Vector2f pea = greenPea->getPosition();
-        if (pea.x >= 1890 && pea.y >= 100 && pea.x >= 1890 && pea.y <= 1031)
+        if (greenPea != nullptr)
         {
-            greenPea->setPosition(peaPosition.x + 100, peaPosition.y + 10);
-            counter = 0;
-        }
+            // Create a new GreenPea instance
 
-        // Draw the GreenPea
-        greenPea->draw();
+            // Set its position
+            sf::Vector2f peaPosition = plantSprite.getPosition();
+            greenPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10); // Set initial position
 
-        // Check for collision with each zombie
-        for (int i = 0; i < 5; ++i)
-        {
-            if (zombie[i] != nullptr)
+            sf::Vector2f pea = greenPea->getPosition();
+            if (pea.x >= 1890 && pea.y >= 100 && pea.x >= 1890 && pea.y <= 1031)
             {
-                if (zombie[i]->checkCollision(pea))
-                {
-                    // Reset the position of the pea
-                    greenPea->setPosition(peaPosition.x + 100, peaPosition.y + 10);
-                    counter = 0;
+                greenPea->setPosition(peaPosition.x + 100, peaPosition.y + 10);
+                counter = 0;
+            }
 
-                    // Increment the hit counter of the zombie
-                    zombie[i]->incrementHitCounter();
+            // Draw the GreenPea
+            greenPea->draw();
+
+            // Check for collision with each zombie
+            for (int i = 0; i < 5; ++i)
+            {
+                if (zombie[i] != nullptr)
+                {
+                    if (zombie[i]->checkCollision(pea))
+                    {
+                        // Reset the position of the pea
+                        greenPea->setPosition(peaPosition.x + 100, peaPosition.y + 10);
+                        counter = 0;
+
+                        // Increment the hit counter of the zombie
+                        zombie[i]->incrementHitCounter();
+
+                        // Restart the reload timer
+                        generateTimer.restart();
+                        return; // Exit the function early since a shot was fired
+                    }
                 }
             }
+
+            // Update counter
+            counter = counter + 2;
         }
-
-
-        // Update counter
-        counter = counter + 2;
     }
 }
 
