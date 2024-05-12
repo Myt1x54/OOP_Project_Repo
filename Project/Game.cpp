@@ -23,6 +23,7 @@ Game::Game(sf::RenderWindow& window) : window(window)
     mainMenu = new MainMenu(window);
     startScreen = new StartScreen(window);
     stagesScreen = new StagesScreen(window);
+    instructionScreen = new InstructionScreen(window);
     currentScreen = 0;
 }
 
@@ -38,6 +39,9 @@ void Game::run()
             break;
         case 2: // Stages Screen
             runStagesScreen();
+            break;
+        case 3:
+            runInstructionScreen();
             break;
         default:
             break;
@@ -67,7 +71,7 @@ void Game::runMainMenu()
         currentScreen = 2; // Switch to Stages Screen
         break;
     case 1: // Show instructions
-        // Display instructions
+        currentScreen = 3; // Switch to Instruction Screen
         break;
     case 2: // Show scoreboard
         // Display scoreboard
@@ -77,6 +81,22 @@ void Game::runMainMenu()
         break;
     default:
         break;
+    }
+}
+
+void Game::runInstructionScreen()
+{
+    currentScreen = instructionScreen->display(window, *instructionScreen);
+
+
+    sf::Event event;
+    while (window.pollEvent(event))
+    {
+        if (event.type == sf::Event::Closed)
+        {
+            window.close(); // Close the window if the close button is clicked
+        }
+        
     }
 }
 
@@ -154,4 +174,5 @@ Game::~Game()
     delete startScreen;
     delete mainMenu;
     delete stagesScreen;
+    delete instructionScreen;
 }

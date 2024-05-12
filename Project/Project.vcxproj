@@ -148,6 +148,7 @@
     <ClCompile Include="FootballZombie.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GreenPea.cpp" />
+    <ClCompile Include="InstructionScreen.cpp" />
     <ClCompile Include="Levels.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="FootballZombie.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GreenPea.h" />
+    <ClInclude Include="InstructionScreen.h" />
     <ClInclude Include="Levels.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="NighttimeSiege.h" />

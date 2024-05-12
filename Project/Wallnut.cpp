@@ -2,13 +2,14 @@
 #include<iostream>
 using namespace std;
 
-Wallnut::Wallnut(int newCost, int newHealth, int newAttackDamage, RenderWindow& window) : Plant(newCost, newHealth, newAttackDamage, window)
+Wallnut::Wallnut(int newCost, int newHealth, int newAttackDamage, RenderWindow& window, float initialX, float initialY) : Plant(newCost, newHealth, newAttackDamage, window)
 {
     // Load background image for BeginnersGarden
     plantImage.loadFromFile("../Images/WallnutSprite.png");
     plantTexture.loadFromImage(plantImage);
     plantSprite.setTexture(plantTexture);
     generateTimer.restart();
+    startPosition = sf::Vector2f(initialX, initialY);
     hitCount = 0;
     destroyed = false;
 }
@@ -25,7 +26,8 @@ sf::Vector2f Wallnut::getPosition() const
 
 void Wallnut::Roll()
 {
-    // will implement later
+    sf::Vector2f wallnutposition = getPosition();
+    setPosition(wallnutposition.x + 0.5, wallnutposition.y);
 }
 
 void Wallnut::draw()
@@ -35,9 +37,8 @@ void Wallnut::draw()
 
 void Wallnut::takeDamage()
 {
-    if (generateTimer.getElapsedTime().asSeconds() >= 6.0f) 
+    if (generateTimer.getElapsedTime().asSeconds() >= 3.0f) 
     {
-        cout << "moiz" << endl;
         // Increment hitCount only if it's less than 10
         if (hitCount < 10) 
         {
@@ -55,4 +56,24 @@ void Wallnut::takeDamage()
 bool Wallnut::isDestroyed()
 {
     return destroyed; // Return the value of the destroyed flag
+}
+
+bool Wallnut::isFinishedMoving() const
+{
+    // Get the current position of the Wallnut
+    sf::Vector2f currentPosition = getPosition();
+
+    // Calculate the destination position after rolling 3 squares
+    float destinationX = startPosition.x + 3 * 150; // Assuming SQUARE_SIZE is the size of each square
+    float destinationY = startPosition.y; // No change in Y position
+
+    // Check if the Wallnut has reached its destination
+    if (currentPosition.x >= destinationX)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }

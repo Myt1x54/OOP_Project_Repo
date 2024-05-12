@@ -318,7 +318,7 @@ int ZombieOutskirts::display()
                                     selectedPlantType = -1;
                                     break;
                                 case 3: // WallNut
-                                    plant[i] = new Wallnut(100, 125, 25, window);
+                                    plant[i] = new Wallnut(100, 125, 25, window, plantX, plantY);
                                     currency -= 50;
                                     selectedPlantType = -1;
                                     break;
@@ -499,6 +499,9 @@ int ZombieOutskirts::display()
             }
         }
 
+
+
+
         // Generate suns for all sunflowers and draw them
         for (int i = 0; i < 45; i++)
         {
@@ -521,12 +524,28 @@ int ZombieOutskirts::display()
             {
                 plant[i]->updateSprite();
                 plant[i]->draw();
+
+                // Check if the current plant is a Wallnut
+                if (dynamic_cast<Wallnut*>(plant[i]) != nullptr)
+                {
+                    Wallnut* wallnut = dynamic_cast<Wallnut*>(plant[i]);
+
+                    // Check if the Wallnut hasn't finished moving
+                    if (!wallnut->isFinishedMoving())
+                    {
+                        wallnut->Roll();
+                    }
+                }
+
+                // Check if the current plant is a Sunflower
                 if (dynamic_cast<Sunflower*>(plant[i]) != nullptr)
                 {
+                    Sunflower* sunflower = dynamic_cast<Sunflower*>(plant[i]);
+
                     // Check if the sun is clicked and add currency
-                    if (plant[i]->isClicked(static_cast<Vector2f>(mousePosition)))
+                    if (sunflower->isClicked(static_cast<Vector2f>(mousePosition)))
                     {
-                        plant[i]->setCurrency(currency);
+                        sunflower->setCurrency(currency);
                     }
                 }
             }
@@ -563,6 +582,8 @@ int ZombieOutskirts::display()
                 }
             }
         }
+       
+
         for (int j = 0; j < i; ++j)
         {
             bool plantDestroyed = false; // Flag to indicate if a plant has been destroyed

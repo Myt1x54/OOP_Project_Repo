@@ -13,9 +13,6 @@ void StartScreen::draw()
 {
     // Draw background
     window.draw(backgroundSprite);
-
-    // Draw start text
-    //window.draw(startText);
 }
 
 void StartScreen::display(sf::RenderWindow& window, StartScreen& screen)

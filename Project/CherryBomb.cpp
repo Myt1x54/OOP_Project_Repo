@@ -6,6 +6,9 @@ CherryBomb::CherryBomb(int newCost, int newHealth, int newAttackDamage, RenderWi
     plantImage.loadFromFile("../Images/CherryBombSprite.png");
     plantTexture.loadFromImage(plantImage);
     plantSprite.setTexture(plantTexture);
+    GenerateTimer.restart();
+    hitcount = 0;
+    Destroyed = false;
 }
 
 void CherryBomb::setPosition(float x, float y)
@@ -26,4 +29,27 @@ void CherryBomb::Blast()
 void CherryBomb::draw()
 {
     window.draw(plantSprite);
+}
+
+void CherryBomb::takeDamage()
+{
+    if (GenerateTimer.getElapsedTime().asSeconds() >= 3.0f)
+    {
+        // Increment hitCount only if it's less than 10
+        if (hitcount < 2)
+        {
+            hitcount++;
+        }
+        GenerateTimer.restart(); // Restart the timer after incrementing hitCount
+    }
+
+    if (hitcount >= 10)
+    {
+        Destroyed = true;
+    }
+}
+
+bool CherryBomb::isDestroyed()
+{
+    return Destroyed; // Return the value of the destroyed flag
 }

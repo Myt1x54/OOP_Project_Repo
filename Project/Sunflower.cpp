@@ -91,10 +91,16 @@ bool Sunflower::isClicked(sf::Vector2f mousePosition)
 
 void Sunflower::takeDamage()
 {
-    if (generateTimer.getElapsedTime().asSeconds() >= 6)
+    if (generateTimer.getElapsedTime().asSeconds() >= 3.0f)
     {
-        hitCount++;
+        // Increment hitCount only if it's less than 10
+        if (hitCount < 3)
+        {
+            hitCount++;
+        }
+        generateTimer.restart(); // Restart the timer after incrementing hitCount
     }
+
     if (hitCount >= 3)
     {
         destroyed = true;
