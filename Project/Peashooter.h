@@ -16,6 +16,7 @@ private:
 	int hitCount;
 	bool destroyed;
 	float lastHitTime;
+	float peaspeed;
 public:
 	Peashooter(int newCost, int newHealth, int newAttackDamage, sf::RenderWindow& window);
 

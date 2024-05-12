@@ -1,4 +1,6 @@
-﻿#include <SFML/Graphics.hpp>
+﻿#include<iostream>
+#include<cstdlib>
+#include <SFML/Graphics.hpp>
 #include <ctime>
 #include "StartScreen.h"
 #include "MainMenu.h"
@@ -15,7 +17,7 @@ struct coordinats {
 
 int main()
 {
-	 
+	srand(time(nullptr));
 	
 	// Create a window, n* n
 	RenderWindow window(VideoMode::getFullscreenModes()[0], "Plants Vs Zombies", Style::Fullscreen);

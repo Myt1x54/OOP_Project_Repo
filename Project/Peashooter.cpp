@@ -4,7 +4,7 @@ using namespace std;
 Peashooter::Peashooter(int newCost, int newHealth, int newAttackDamage, RenderWindow& window) : Plant(newCost, newHealth, newAttackDamage, window)
 {
     // Load Sprite for Peashooter
-    plantImage.loadFromFile("../Images/img6.png");
+    plantImage.loadFromFile("../Images/peashooterAnimationSmaller.png");
     //plantImage.loadFromFile("../Images/peashooterAnimationSmaller.png");
     plantTexture.loadFromImage(plantImage);
     plantSprite.setTexture(plantTexture);
@@ -15,13 +15,32 @@ Peashooter::Peashooter(int newCost, int newHealth, int newAttackDamage, RenderWi
     hitCount = 0;
     destroyed = false;
     lastHitTime = 0;
+    peaspeed = (rand() % 4) + 1;
 }
 
 void Peashooter::updateSprite() {
+    // Calculate the width and height of each frame
+    int frameWidth = 2200 / 22;
+    int frameHeight = 100 / 1;
+
+    // Calculate the number of frames in the sprite sheet
+    int frameCount = 22 * 1;
+
+    // Check if it's time to update the frame
     if (animationClock.getElapsedTime().asSeconds() > frameDuration) {
+        // Move to the next frame
         currentFrame = (currentFrame + 1) % frameCount;
-        int offsetX = currentFrame * frameWidth;
-        sprite.setTextureRect(sf::IntRect(offsetX, 0, frameWidth, frameHeight)); // Update texture rectangle
+
+        // Calculate the offset for the current frame
+        int column = currentFrame % 22;
+        int row = currentFrame / 22;
+        int offsetX = column * frameWidth;
+        int offsetY = row * frameHeight;
+
+        // Update the texture rectangle
+        plantSprite.setTextureRect(sf::IntRect(offsetX, offsetY, frameWidth, frameHeight));
+
+        // Restart the animation clock
         animationClock.restart();
     }
 }
@@ -44,7 +63,7 @@ void Peashooter::update()
 void Peashooter::shootPea(ZombieFactory** zombie)
 {
     // Check if enough time has elapsed since the last shot
-    if (generateTimer.getElapsedTime().asSeconds() >= 2.0f) // Adjust the reload time here (2.0f represents 2 seconds)
+    if (generateTimer.getElapsedTime().asSeconds() >= peaspeed) // Adjust the reload time here (2.0f represents 2 seconds)
     {
         if (greenPea != nullptr)
         {
