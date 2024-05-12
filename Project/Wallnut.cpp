@@ -6,6 +6,9 @@ Wallnut::Wallnut(int newCost, int newHealth, int newAttackDamage, RenderWindow& 
     plantImage.loadFromFile("../Images/WallnutSprite.png");
     plantTexture.loadFromImage(plantImage);
     plantSprite.setTexture(plantTexture);
+    generateTimer.restart();
+    hitCount = 0;
+    destroyed = false;
 }
 
 void Wallnut::setPosition(float x, float y)
@@ -26,4 +29,21 @@ void Wallnut::Roll()
 void Wallnut::draw()
 {
     window.draw(plantSprite);
+}
+
+void Wallnut::takeDamage()
+{
+    if (generateTimer.getElapsedTime().asSeconds() >= 20)
+    {
+        hitCount++;
+    }
+    if (hitCount >= 3)
+    {
+        destroyed = true;
+    }
+}
+
+bool Wallnut::isDestroyed()
+{
+    return destroyed; // Return the value of the destroyed flag
 }
