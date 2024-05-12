@@ -15,7 +15,7 @@ SimpleZombie::SimpleZombie(int newHealth, int newAttackDamage, sf::RenderWindow&
 void SimpleZombie::updateSprite() 
 {
     // Calculate the width and height of each frame
-    int frameWidth = 6785 / 45;
+    int frameWidth = 6800 / 45;
     int frameHeight = 150 / 1;
 
     // Calculate the number of frames in the sprite sheet
@@ -33,7 +33,7 @@ void SimpleZombie::updateSprite()
         int offsetY = row * frameHeight;
 
         // Update the texture rectangle
-        zombieSprite.setTextureRect(sf::IntRect(offsetX, offsetY, frameWidth, frameHeight));
+        zombieSprite.setTextureRect(sf::IntRect(offsetX + 3, offsetY, frameWidth, frameHeight));
 
         // Restart the animation clock
         animationClock.restart();
