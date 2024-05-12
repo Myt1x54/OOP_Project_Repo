@@ -21,6 +21,11 @@ void FoggyForest::draw()
     window.draw(currencyText);
 }
 
+bool FoggyForest::loseLife()
+{
+    return 0;
+}
+
 int FoggyForest::display()
 {
     sf::Vector2i mousePosition;

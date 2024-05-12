@@ -24,17 +24,95 @@ BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
     currencyText.setPosition(320, 35); // Adjust position as needed
     livefont.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load your font file
     LivesText.setFont(font);
-    LivesText.setCharacterSize(50);
-    sf::Color brownColor(139, 69, 19); // RGB values for brown color
-    LivesText.setFillColor(brownColor);
+    LivesText.setCharacterSize(100);
+    sf::Color brownlivesColor(139, 69, 19); // RGB values for brown color
+    LivesText.setFillColor(brownlivesColor);
     LivesText.setOutlineColor(sf::Color::Black);
     LivesText.setOutlineThickness(3);
-    LivesText.setPosition(320, 35); // Adjust position as needed
+    LivesText.setPosition(800, 420); // Adjust position as needed
 
 
     plant = new PlantFactory*[45];
     zombie = new ZombieFactory*[5];
     gameTime = new GameTime;
+}
+
+bool BeginnersGarden::loseLife()
+{
+    lives--;
+
+    // Get the current elapsed time
+    float elapsedTime = gameTime->getElapsedTime();
+
+    // Display the "Remaining Lives" or "Game Over" text based on the remaining lives
+    if (lives > 0)
+    {
+        LivesText.setString("Remaining Lives: " + std::to_string(lives));
+    }
+    else
+    {
+        LivesText.setString("Game Over");
+        LivesText.setPosition(500, 420); // Adjust position for the new text
+
+        sf::Text continueText;
+        continueText.setFont(font);
+        continueText.setCharacterSize(100);
+        sf::Color browncontinueTextColor(139, 69, 19); // RGB values for brown color
+        continueText.setFillColor(browncontinueTextColor);
+        continueText.setOutlineColor(sf::Color::Black);
+        continueText.setOutlineThickness(3);
+        continueText.setString("Press Space to Continue to Main Menu");
+        continueText.setPosition(380, 600); // Adjust position as needed
+
+        window.draw(LivesText);
+        window.draw(continueText);
+        window.display();
+
+        // Wait for spacebar key press to continue
+        bool spacePressed = false;
+        while (!spacePressed)
+        {
+            sf::Event event;
+            while (window.pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                {
+                    window.close();
+                    return true; // Indicate game over if window closed
+                }
+                else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+                {
+                    spacePressed = true;
+                }
+            }
+        }
+
+        return true; // Indicate game over after space pressed
+    }
+
+    // Draw the text
+    window.draw(LivesText);
+
+    // Update the display
+    window.display();
+
+    // Delay for a certain duration before continuing
+    float delayDuration = 3.0f; // 3 seconds
+    while (elapsedTime < delayDuration)
+    {
+        // Get the updated elapsed time
+        elapsedTime = gameTime->getElapsedTime();
+
+        // Update the window events to prevent freezing
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+    }
+
+    return false; // Indicate that the game is not over yet
 }
 
 void BeginnersGarden::draw()
@@ -62,6 +140,9 @@ int BeginnersGarden::display()
     {
         zombie[i] = nullptr;
     }
+
+    bool paused = false;
+    bool spacePressedDuringPause = false;
 
     float count = 0;
 
@@ -237,8 +318,54 @@ int BeginnersGarden::display()
                     }
                 }
             }
+            else if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Escape)
+                {
+                    paused = !paused;
+                }
+                else if (event.key.code == sf::Keyboard::Space && paused)
+                {
+                    spacePressedDuringPause = true;
+                }
+            }
         }
 
+        if (paused)
+        {
+            sf::Text pauseText;
+            pauseText.setFont(font);
+            pauseText.setCharacterSize(100);
+            sf::Color pauseColor(139, 69, 19);
+            pauseText.setFillColor(pauseColor);
+            pauseText.setOutlineColor(sf::Color::Black);
+            pauseText.setOutlineThickness(3);
+            pauseText.setString("Game Paused");
+            pauseText.setPosition(800, 420); 
+
+            sf::Text mainMenuText;
+            mainMenuText.setFont(font);
+            mainMenuText.setCharacterSize(100);
+            sf::Color mainMenuColor(139, 69, 19);
+            mainMenuText.setFillColor(mainMenuColor);
+            mainMenuText.setOutlineColor(sf::Color::Black);
+            mainMenuText.setOutlineThickness(3);
+            mainMenuText.setString("Press Space to Go to Main Menu");
+            mainMenuText.setPosition(500, 520); 
+
+            if (spacePressedDuringPause)
+            {
+                spacePressedDuringPause = false;
+                return 1;
+            }
+
+            window.draw(mainMenuText);
+            window.draw(pauseText);
+
+            window.display();
+
+            continue;
+        }
 
         if (timeSinceSpawn >= spawnTime && zombieCount < 5)
         {
@@ -327,8 +454,12 @@ int BeginnersGarden::display()
                 if (zomposition.x <= 370 && zomposition.y >= 100 && zomposition.x <= 370 && zomposition.y <= 1031)
                 {
                     zombie[i]->DeleteZombie();
+                    bool gameover = loseLife();
+                    if (gameover)
+                    {
+                        return 1;
+                    }
                 }
-                // Update zombie positions and handle other zombie logic...
             }
         }
         
@@ -361,10 +492,6 @@ int BeginnersGarden::display()
                         plant[i]->setCurrency(currency);
                     }
                 }
-                /*else if (dynamic_cast<Peashooter*>(plant[i]) != nullptr)
-                {
-                    plant[i]->shootPea(zombie);
-                }*/
             }
         }
         for (int j = 0; j < i; ++j)

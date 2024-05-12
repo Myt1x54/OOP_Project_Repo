@@ -39,6 +39,7 @@ public:
     virtual void draw() = 0;
     virtual int display() = 0;
     virtual void setCurrency(int value) = 0;
+    virtual bool loseLife() = 0;
 
 };
 

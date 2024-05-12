@@ -15,6 +15,8 @@ public:
 
 	void setCurrency(int value);
 
+	bool loseLife();
+
 	~FoggyForest();
 };
 

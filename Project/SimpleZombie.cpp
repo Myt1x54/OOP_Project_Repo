@@ -29,7 +29,7 @@ void SimpleZombie::draw()
 void SimpleZombie::Move()
 {
     sf::Vector2f zombie = getPosition();
-    setPosition(zombie.x - 0.5f, zombie.y);
+    setPosition(zombie.x - 2.5f, zombie.y);
 }
 
 void SimpleZombie::DeleteZombie()
