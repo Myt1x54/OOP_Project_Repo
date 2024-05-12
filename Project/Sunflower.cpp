@@ -20,6 +20,11 @@ Sunflower::Sunflower(int newCost, int newHealth, int newAttackDamage, sf::Render
      // Start the generateTimer
     generateTimer.restart();
 
+    hitCount = 0;
+
+    destroyed = false;
+
+    lastHitTime = 0;
 }
 
 void Sunflower::setPosition(float x, float y)
@@ -82,4 +87,31 @@ bool Sunflower::isClicked(sf::Vector2f mousePosition)
         sunCollected = false; // Reset the flag if the mouse is not over the sun sprite
     }
     return false;
+}
+
+void Sunflower::takeDamage()
+{
+    if (generateTimer.getElapsedTime().asSeconds() >= 9)
+    {
+        hitCount++;
+    }
+    if (hitCount >= 3)
+    {
+        destroyed = true;
+    }
+}
+
+bool Sunflower::isDestroyed()
+{
+    return destroyed; // Return the value of the destroyed flag
+}
+
+float Sunflower::getLastHitTime() const
+{
+    return lastHitTime;
+}
+
+void Sunflower::setLastHitTime(float time)
+{
+    lastHitTime = time;
 }

@@ -11,6 +11,9 @@ private:
 	sf::Sprite sunSprite; // Sprite for the sun
 	sf::Clock generateTimer; // Timer for generating suns
 	bool sunCollected;
+	int hitCount;
+	bool destroyed;
+	float lastHitTime;
 public:
 	Sunflower(int newCost, int newHealth, int newAttackDamage, sf::RenderWindow& window);
 
@@ -25,6 +28,14 @@ public:
 	void setCurrency(int& currency);
 
 	bool isClicked(sf::Vector2f mousePosition);
+
+	void takeDamage();
+
+	bool isDestroyed();
+
+	float getLastHitTime() const;
+
+	void setLastHitTime(float time);
 };
 
 

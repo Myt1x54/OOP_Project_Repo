@@ -25,8 +25,11 @@ protected:
 	GameTime* gameTime;
     ZombieFactory** zombie;
     int currency;
+    int lives;
     sf::Font font;
     sf::Text currencyText;
+    sf::Font livefont;
+    sf::Text LivesText;
 public:
     Levels(RenderWindow& window);
 

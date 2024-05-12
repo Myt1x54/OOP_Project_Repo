@@ -8,8 +8,11 @@ Peashooter::Peashooter(int newCost, int newHealth, int newAttackDamage, RenderWi
     plantTexture.loadFromImage(plantImage);
     plantSprite.setTexture(plantTexture);
     greenPea = new GreenPea(window);
+    generateTimer.restart();
     counter = 0;
-    
+    hitCount = 0;
+    destroyed = false;
+    lastHitTime = 0;
 }
 
 void Peashooter::setPosition(float x, float y)
@@ -78,4 +81,31 @@ void Peashooter::draw()
 Peashooter::~Peashooter()
 {
         delete greenPea;
+}
+
+void Peashooter::takeDamage()
+{
+    if (generateTimer.getElapsedTime().asSeconds() >= 9)
+    {
+        hitCount++;
+    }
+    if (hitCount >= 6) 
+    {
+        destroyed = true;
+    }
+}
+
+bool Peashooter::isDestroyed()
+{
+    return destroyed; // Return the value of the destroyed flag
+}
+
+float Peashooter::getLastHitTime() const
+{
+    return lastHitTime;
+}
+
+void Peashooter::setLastHitTime(float time)
+{
+    lastHitTime = time;
 }

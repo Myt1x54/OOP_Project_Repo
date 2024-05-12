@@ -13,6 +13,7 @@ BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
     currency = 500;
+    lives = 3;
     font.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load your font file
     currencyText.setFont(font);
     currencyText.setCharacterSize(50);
@@ -21,6 +22,14 @@ BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
     currencyText.setOutlineColor(sf::Color::Black);
     currencyText.setOutlineThickness(3);
     currencyText.setPosition(320, 35); // Adjust position as needed
+    livefont.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load your font file
+    LivesText.setFont(font);
+    LivesText.setCharacterSize(50);
+    sf::Color brownColor(139, 69, 19); // RGB values for brown color
+    LivesText.setFillColor(brownColor);
+    LivesText.setOutlineColor(sf::Color::Black);
+    LivesText.setOutlineThickness(3);
+    LivesText.setPosition(320, 35); // Adjust position as needed
 
 
     plant = new PlantFactory*[45];
@@ -60,6 +69,11 @@ int BeginnersGarden::display()
     float timeSinceSpawn = 0.0f;
     int zombieCount = 0; // Track the number of zombies spawned
 
+    bool zombiemoving[5];
+    for (int i = 0; i < 5; i++)
+    {
+        zombiemoving[i] = 1;
+    }
     
      int i = 0;
     while (window.isOpen()) 
@@ -187,7 +201,18 @@ int BeginnersGarden::display()
                                 }
                             }
 
-                            if (!positionOccupied && insideGrid)
+                            // Add the code snippet here
+                            int newIndex = -1;
+                            for (int c = 0; c < 45; ++c) 
+                            {
+                                if (plant[c] == nullptr) 
+                                {
+                                    newIndex = c;
+                                    break;
+                                }
+                            }
+
+                            if (!positionOccupied && insideGrid && newIndex != -1)
                             {
                                 switch (selectedPlantType)
                                 {
@@ -235,6 +260,8 @@ int BeginnersGarden::display()
 
             // Set the position of the zombie
             newZombie->setPosition(1900 + (rand() + 1) % 100, zombieY);
+
+
 
             // Add the zombie to the zombie array
             zombie[zombieCount++] = newZombie;
@@ -291,8 +318,11 @@ int BeginnersGarden::display()
         {
             if (zombie[i] != nullptr)
             {
+                if (zombiemoving[i])
+                {
+                    zombie[i]->Move();
+                }
                 zombie[i]->draw();
-                zombie[i]->Move();
                 sf::Vector2f zomposition = zombie[i]->getPosition();
                 if (zomposition.x <= 370 && zomposition.y >= 100 && zomposition.x <= 370 && zomposition.y <= 1031)
                 {
@@ -331,12 +361,81 @@ int BeginnersGarden::display()
                         plant[i]->setCurrency(currency);
                     }
                 }
-                else if (dynamic_cast<Peashooter*>(plant[i]) != nullptr)
+                /*else if (dynamic_cast<Peashooter*>(plant[i]) != nullptr)
                 {
                     plant[i]->shootPea(zombie);
+                }*/
+            }
+        }
+        for (int j = 0; j < i; ++j)
+        {
+            if (plant[j] != nullptr && dynamic_cast<Peashooter*>(plant[j]) != nullptr)
+            {
+                Peashooter* peashooter = dynamic_cast<Peashooter*>(plant[j]);
+
+                // Get the position of the Peashooter
+                sf::Vector2f peashooterPosition = plant[j]->getPosition();
+
+                // Iterate through zombies to find if there's one in the same row as the Peashooter
+                for (int k = 0; k < 5; ++k)
+                {
+                    if (zombie[k] != nullptr)
+                    {
+                        sf::Vector2f zombiePosition = zombie[k]->getPosition();
+
+                        // Calculate the Y-position for the zombie
+                        int randomRow = rand() % 5; // Choose a random row index between 0 and 4
+                        const float verticalDistance = (1034 - 125) / 5.0f;
+
+                        float zombieY = 30 + randomRow * verticalDistance + verticalDistance / 2;
+
+                        // Check if the zombie is in the same row as the Peashooter
+                        if (zombiePosition.x <= 1900 && abs(zombiePosition.y - peashooterPosition.y) < verticalDistance / 2)
+                        {
+                            // If yes, shoot at the zombie
+                            peashooter->shootPea(zombie);
+                        }
+                    }
                 }
             }
         }
+        for (int j = 0; j < i; ++j)
+        {
+            bool plantDestroyed = false; // Flag to indicate if a plant has been destroyed
+            if (plant[j] != nullptr)
+            {
+                for (int k = 0; k < 5; ++k)
+                {
+                    if (zombie[k] != nullptr)
+                    {
+                        if (zombie[k]->checkCollision(plant[j]->getPosition()))
+                        {
+                            zombiemoving[k] = 0;
+                            plant[j]->takeDamage();
+
+                            if (plant[j]->isDestroyed())
+                            {
+                                zombiemoving[k] = 1;
+                                delete plant[j];
+                                for (int k = j; k < i - 1; ++k)
+                                {
+                                    plant[k] = plant[k + 1];
+                                }
+                                plant[i - 1] = nullptr;
+                                --i;
+                                plantDestroyed = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            if (plantDestroyed)
+            {
+                break;
+            }
+        }
+
         window.display();
         
     }

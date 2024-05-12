@@ -11,7 +11,11 @@ class Peashooter : public Plant
 {
 private:
 	Pea* greenPea;
+	sf::Clock generateTimer;
 	float counter;
+	int hitCount;
+	bool destroyed;
+	float lastHitTime;
 public:
 	Peashooter(int newCost, int newHealth, int newAttackDamage, sf::RenderWindow& window);
 
@@ -25,6 +29,14 @@ public:
 
 	void update();
 
+	void takeDamage();
+
+	bool isDestroyed();
+
+	float getLastHitTime() const;
+
+	void setLastHitTime(float time);
+	
 	~Peashooter();
 };
 
