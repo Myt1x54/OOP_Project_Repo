@@ -91,7 +91,7 @@ bool Sunflower::isClicked(sf::Vector2f mousePosition)
 
 void Sunflower::takeDamage()
 {
-    if (generateTimer.getElapsedTime().asSeconds() >= 9)
+    if (generateTimer.getElapsedTime().asSeconds() >= 6)
     {
         hitCount++;
     }

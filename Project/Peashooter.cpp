@@ -122,11 +122,11 @@ Peashooter::~Peashooter()
 
 void Peashooter::takeDamage()
 {
-    if (generateTimer.getElapsedTime().asSeconds() >= 3)
+    if (generateTimer.getElapsedTime().asSeconds() >= 6)
     {
         hitCount++;
     }
-    if (hitCount >= 6) 
+    if (hitCount >= 4) 
     {
         destroyed = true;
     }
