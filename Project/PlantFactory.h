@@ -58,5 +58,9 @@ public:
 
 	virtual void setLastHitTime(float time) = 0;
 
+	virtual void Roll() = 0;
+
+	virtual bool isFinishedMoving() const = 0;
+
 };
 

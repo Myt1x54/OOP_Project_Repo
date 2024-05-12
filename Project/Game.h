@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "StartScreen.h"
 #include "MainMenu.h"
+#include "InstructionScreen.h"
 #include "StagesScreen.h"
 #include "Levels.h"
 #include "BeginnersGarden.h"
@@ -19,6 +20,7 @@ private:
 	MainMenu* mainMenu;
 	StartScreen* startScreen;
 	StagesScreen* stagesScreen;
+	InstructionScreen* instructionScreen;
 	int currentScreen;
 public:
 	Game(sf::RenderWindow& window);
@@ -28,6 +30,8 @@ public:
 	void runStartScreen();
 
 	void runMainMenu();
+
+	void runInstructionScreen();
 
 	void runStagesScreen();
 

@@ -192,7 +192,7 @@ int SunflowerFields::display()
                                     selectedPlantType = -1;
                                     break;
                                 case 3: // WallNut
-                                    plant[i] = new Wallnut(100, 125, 25, window);
+                                    plant[i] = new Wallnut(100, 125, 25, window, plantX, plantY);
                                     selectedPlantType = -1;
                                     break;
                                 case 4: // SnowPeaShooter

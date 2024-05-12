@@ -79,3 +79,12 @@ void Plant::setLastHitTime(float time)
 {
 	// do nothing
 }
+
+void Plant::Roll()
+{
+	// do nothing
+}
+bool Plant::isFinishedMoving() const
+{
+	return 0;
+}

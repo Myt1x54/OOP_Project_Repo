@@ -36,6 +36,10 @@ public:
 
 	virtual void setLastHitTime(float time);
 
+	virtual void Roll();
+
+	virtual bool isFinishedMoving() const;
+
 	//virtual int Display() = 0;
 
 
