@@ -17,6 +17,11 @@ sf::Vector2f Plant::getPosition() const
 	return sf::Vector2f(1000000, 1000000);
 }
 
+void Plant::updateSprite()
+{
+	// do nothing
+}
+
 void Plant::draw()
 {
 	// nothing to draw here

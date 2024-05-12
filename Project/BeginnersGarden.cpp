@@ -322,6 +322,7 @@ int BeginnersGarden::display()
         {
             if (plant[i] != nullptr)
             {
+                plant[i]->updateSprite();
                 plant[i]->draw();
                 if (dynamic_cast<Sunflower*>(plant[i]) != nullptr)
                 {

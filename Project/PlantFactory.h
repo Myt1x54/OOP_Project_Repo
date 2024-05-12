@@ -13,6 +13,15 @@ protected:
 	sf::Image plantImage;
 	sf::Texture plantTexture;
 	sf::Sprite plantSprite;
+	//animation stuff
+	sf::Texture texture;
+	sf::Sprite sprite;
+	sf::Clock animationClock;
+	int currentFrame;
+	int frameWidth;
+	int frameHeight;
+	int frameCount;
+	float frameDuration;
 public:
 
 	PlantFactory(int newCost, int newHealth, int newAttackDamage, sf::RenderWindow& window);
@@ -28,6 +37,8 @@ public:
 	virtual void setPosition(float x, float y) = 0;
 
 	virtual sf::Vector2f getPosition() const = 0;
+
+	virtual void updateSprite() = 0;
 
 	virtual void draw() = 0;
 

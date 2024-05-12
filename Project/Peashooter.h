@@ -15,6 +15,8 @@ private:
 public:
 	Peashooter(int newCost, int newHealth, int newAttackDamage, sf::RenderWindow& window);
 
+	void updateSprite();
+
 	void draw();
 
 	void setPosition(float x, float y);

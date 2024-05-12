@@ -4,12 +4,23 @@ using namespace std;
 Peashooter::Peashooter(int newCost, int newHealth, int newAttackDamage, RenderWindow& window) : Plant(newCost, newHealth, newAttackDamage, window)
 {
     // Load Sprite for Peashooter
-    plantImage.loadFromFile("../Images/PeaShooterSprite.png");
+    plantImage.loadFromFile("../Images/img6.png");
+    //plantImage.loadFromFile("../Images/peashooterAnimationSmaller.png");
     plantTexture.loadFromImage(plantImage);
     plantSprite.setTexture(plantTexture);
+    plantSprite.setTextureRect(sf::IntRect(0, 0, frameWidth, frameHeight));
     greenPea = new GreenPea(window);
     counter = 0;
     
+}
+
+void Peashooter::updateSprite() {
+    if (animationClock.getElapsedTime().asSeconds() > frameDuration) {
+        currentFrame = (currentFrame + 1) % frameCount;
+        int offsetX = currentFrame * frameWidth;
+        sprite.setTextureRect(sf::IntRect(offsetX, 0, frameWidth, frameHeight)); // Update texture rectangle
+        animationClock.restart();
+    }
 }
 
 void Peashooter::setPosition(float x, float y)

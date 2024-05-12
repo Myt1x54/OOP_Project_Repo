@@ -14,6 +14,8 @@ public:
 
 	virtual sf::Vector2f getPosition() const;
 
+	virtual void updateSprite();
+
 	virtual void draw();
 
 	virtual void shootPea(ZombieFactory** zombie);
