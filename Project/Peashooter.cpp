@@ -17,7 +17,7 @@ Peashooter::Peashooter(int newCost, int newHealth, int newAttackDamage, RenderWi
     lastHitTime = 0;
     peaspeed = (rand() % 4) + 1;
 }
-
+//yo
 void Peashooter::updateSprite() {
     // Calculate the width and height of each frame
     int frameWidth = 2200 / 22;
