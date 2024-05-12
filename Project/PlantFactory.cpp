@@ -1,7 +1,7 @@
 #include "PlantFactory.h"
 
 
-PlantFactory::PlantFactory(int newCost, int newHealth, int newAttackDamage, RenderWindow& window) : currentFrame(0), frameWidth(100), frameHeight(100), frameCount(20), frameDuration(0.1f), window(window)
+PlantFactory::PlantFactory(int newCost, int newHealth, int newAttackDamage, RenderWindow& window) : currentFrame(0), frameWidth(100), frameHeight(100), frameCount(20), frameDuration(0.05f), window(window)
 {
 	cost = newCost;
 	health = newHealth;
