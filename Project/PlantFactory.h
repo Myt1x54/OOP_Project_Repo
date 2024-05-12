@@ -14,8 +14,6 @@ protected:
 	sf::Texture plantTexture;
 	sf::Sprite plantSprite;
 	//animation stuff
-	sf::Texture texture;
-	sf::Sprite sprite;
 	sf::Clock animationClock;
 	int currentFrame;
 	int frameWidth;

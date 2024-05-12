@@ -22,6 +22,11 @@ sf::Vector2f Zombie::getPosition() const
 	return sf::Vector2f(1000000, 1000000);
 }
 
+void Zombie::updateSprite()
+{
+	// do nothing
+}
+
 void Zombie::draw()
 {
 
