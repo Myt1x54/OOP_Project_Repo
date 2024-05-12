@@ -57,3 +57,25 @@ bool Plant::isClicked(sf::Vector2f mousePosition)
 	// do nothing
 	return 0;
 }
+
+void Plant::takeDamage()
+{
+	// do nothing
+}
+
+bool Plant::isDestroyed()
+{
+	// do nothing
+	return 0;
+}
+
+float Plant::getLastHitTime() const
+{
+	//do nothing 
+	return -1;
+}
+
+void Plant::setLastHitTime(float time)
+{
+	// do nothing
+}

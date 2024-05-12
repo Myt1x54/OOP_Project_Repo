@@ -21,6 +21,11 @@ void NighttimeSiege::draw()
     window.draw(currencyText);
 }
 
+bool NighttimeSiege::loseLife()
+{
+    return 0;
+}
+
 int NighttimeSiege::display()
 {
     sf::Vector2i mousePosition;

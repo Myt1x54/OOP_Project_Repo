@@ -20,7 +20,12 @@ void RooftopRampage::draw()
     window.draw(backgroundSprite);
     window.draw(currencyText);
 }
-//
+
+bool RooftopRampage::loseLife()
+{
+    return 0;
+}
+
 int RooftopRampage::display()
 {
     sf::Vector2i mousePosition;

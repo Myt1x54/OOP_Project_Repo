@@ -28,6 +28,14 @@ public:
 
 	virtual bool isClicked(sf::Vector2f mousePosition);
 
+	virtual void takeDamage();
+
+	virtual bool isDestroyed();
+
+	virtual float getLastHitTime() const;
+
+	virtual void setLastHitTime(float time);
+
 	//virtual int Display() = 0;
 
 

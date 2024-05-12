@@ -22,6 +22,11 @@ void ZombieOutskirts::draw()
     window.draw(currencyText);
 }
 
+bool ZombieOutskirts::loseLife()
+{
+    return 0;
+}
+
 int ZombieOutskirts::display()
 {
     sf::Vector2i mousePosition;

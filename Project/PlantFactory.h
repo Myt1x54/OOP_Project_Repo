@@ -52,5 +52,13 @@ public:
 
 	virtual bool isClicked(sf::Vector2f mousePosition) = 0;
 
+	virtual void takeDamage() = 0;
+
+	virtual bool isDestroyed() = 0;
+
+	virtual float getLastHitTime() const = 0;
+
+	virtual void setLastHitTime(float time) = 0;
+
 };
 

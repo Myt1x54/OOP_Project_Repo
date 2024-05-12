@@ -22,6 +22,11 @@ void SunflowerFields::draw()
     window.draw(currencyText);
 }
 
+bool SunflowerFields::loseLife()
+{
+    return 0;
+}
+
 int SunflowerFields::display()
 {
     sf::Vector2i mousePosition;

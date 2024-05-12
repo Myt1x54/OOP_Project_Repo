@@ -96,10 +96,17 @@ void Game::runStagesScreen()
 
 
     int selectedOption = stagesScreen->handleInput();
-
+    int gameover = 0;
     switch (selectedOption) {
     case 0:
-        levels[0]->display();               // Beginner's Garden
+        gameover = levels[0]->display();               // Beginner's Garden
+        if (gameover == 1)
+        {
+            currentScreen = 1; // Switch to Main Menu
+            delete stagesScreen; // Close the stage screen
+            stagesScreen = new StagesScreen(window); // Recreate the stage screen for next use
+            return; // Exit the function and return to the main loop
+        }
         break;
     case 1:
         levels[1]->display();               // Zombies Outskirts
