@@ -26,14 +26,11 @@ void FootballZombie::draw()
 
 void FootballZombie::Move()
 {
-    // Initialize static variables to keep track of time
     static sf::Clock clock;
     static float elapsedTime = 0.0f;
 
-    // Get elapsed time since last movement
     float deltaTime = clock.getElapsedTime().asSeconds() - elapsedTime;
 
-    // If elapsed time is less than 2 seconds, keep moving in the same row
     if (deltaTime < 2.0f) 
     {
         sf::Vector2f zombie = getPosition();
@@ -41,18 +38,15 @@ void FootballZombie::Move()
     }
     else 
     {
-        // If elapsed time is 5 seconds or more, randomly switch rows
-        int randomRow = rand() % 5; // Choose a random row index between 0 and 4
+        int randomRow = rand() % 5; 
         const float verticalDistance = (1034 - 125) / 5.0f;
         float zombieY = 30 + randomRow * verticalDistance + verticalDistance / 2;
         setPosition(getPosition().x, zombieY);
 
-        // Reset elapsed time and restart the clock
         elapsedTime = clock.getElapsedTime().asSeconds();
         clock.restart();
     }
 }
-//
 
 void FootballZombie::DeleteZombie()
 {
