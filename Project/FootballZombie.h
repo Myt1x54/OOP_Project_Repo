@@ -4,6 +4,8 @@
 
 class FootballZombie : public Zombie
 {
+private:
+	int hitCounter;
 public:
 	FootballZombie(int newHealth, int newAttackDamage, sf::RenderWindow& window);
 
@@ -12,4 +14,15 @@ public:
 	void setPosition(float x, float y);
 
 	sf::Vector2f getPosition() const;
+
+	void Move();
+
+	void DeleteZombie();
+
+
+	// Check if a given position collides with the zombie
+	bool checkCollision(const sf::Vector2f& position) const;
+
+	// Increment the hit counter of the zombie
+	void incrementHitCounter();
 };

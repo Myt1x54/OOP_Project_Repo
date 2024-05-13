@@ -522,7 +522,7 @@ int BeginnersGarden::display()
                         if (zombiePosition.x <= 1900 && abs(zombiePosition.y - peashooterPosition.y) < verticalDistance / 2)
                         {
                             // If yes, shoot at the zombie
-                            peashooter->shootPea(zombie);
+                            peashooter->shootPea(zombie, 5);
                         }
                     }
                 }

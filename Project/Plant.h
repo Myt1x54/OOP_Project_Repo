@@ -18,7 +18,7 @@ public:
 
 	virtual void draw();
 
-	virtual void shootPea(ZombieFactory** zombie);
+	virtual void shootPea(ZombieFactory** zombie, int totalzombies);
 
 	virtual void update();
 
