@@ -39,17 +39,15 @@ BeginnersGarden::BeginnersGarden(RenderWindow& window) : Levels(window)
 
 bool BeginnersGarden::loseLife()
 {
-    lives--;
-
     // Get the current elapsed time
     float elapsedTime = gameTime->getElapsedTime();
 
     // Display the "Remaining Lives" or "Game Over" text based on the remaining lives
-    if (lives > 0)
+    if (lives > 0 && currency < 5000)
     {
         LivesText.setString("Remaining Lives: " + std::to_string(lives));
     }
-    else
+    else if (lives <= 0 || currency >= 5000)
     {
         LivesText.setString("Game Over");
         LivesText.setPosition(500, 420); // Adjust position for the new text
@@ -452,13 +450,25 @@ int BeginnersGarden::display()
                 zombie[i]->updateSprite();
                 zombie[i]->draw();
                 sf::Vector2f zomposition = zombie[i]->getPosition();
-                if (zomposition.x <= 370 && zomposition.y >= 100 && zomposition.x <= 370 && zomposition.y <= 1031)
+                if (zomposition.x <= 370 && zomposition.y >= 100 && zomposition.x <= 370 && zomposition.y <= 1031 || currency >= 5000)
                 {
-                    zombie[i]->DeleteZombie();
-                    bool gameover = loseLife();
-                    if (gameover)
+                    if (currency >= 5000)
                     {
-                        return 1;
+                        bool gameover = loseLife();
+                        if (gameover)
+                        {
+                            return 1;
+                        }
+                    }
+                    else if(zomposition.x <= 370 && zomposition.y >= 100 && zomposition.x <= 370 && zomposition.y <= 1031)
+                    {
+                        lives--;
+                        zombie[i]->DeleteZombie();
+                        bool gameover = loseLife();
+                        if (gameover)
+                        {
+                            return 1;
+                        }
                     }
                 }
             }
