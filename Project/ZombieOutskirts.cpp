@@ -519,6 +519,7 @@ int ZombieOutskirts::display()
                             return 1;
                         }
                     }
+                }
             }
         }
 
