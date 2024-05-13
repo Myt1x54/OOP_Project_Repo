@@ -1,7 +1,7 @@
 #include "ZombieFactory.h"
 
 
-ZombieFactory::ZombieFactory(int newHealth, int newDamage, sf::RenderWindow& window) : currentFrame(0), frameWidth(150), frameHeight(150), frameCount(45), frameDuration(0.1f), window(window)
+ZombieFactory::ZombieFactory(int newHealth, int newDamage, sf::RenderWindow& window) : currentFrame(0), frameWidth(150), frameHeight(150), frameCount(45), frameDuration(0.05f), window(window)
 {
 	health = newHealth;
 	damage = newDamage;
