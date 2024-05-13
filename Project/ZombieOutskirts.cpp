@@ -485,6 +485,7 @@ int ZombieOutskirts::display()
                 {
                     zombie[i]->Move();
                 }
+                zombie[i]->updateSprite();
                 zombie[i]->draw();
                 sf::Vector2f zomposition = zombie[i]->getPosition();
                 if (zomposition.x <= 370 && zomposition.y >= 100 && zomposition.x <= 370 && zomposition.y <= 1031)
