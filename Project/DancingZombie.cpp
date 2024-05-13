@@ -27,30 +27,47 @@ void DancingZombie::draw()
 
 void DancingZombie::Move()
 {
+    // Define a clock to track time for direction changes
+    static sf::Clock directionClock;
+    static float directionChangeInterval = 3.0f + (rand() % 2); // Random interval between 3 to 4 seconds
+
+    static bool movingUp = false;
+
+    float elapsedSeconds = directionClock.getElapsedTime().asSeconds();
+
+    // Check if it's time to change direction
+    if (elapsedSeconds >= directionChangeInterval) {
+        // Randomly determine the new direction
+        movingUp = rand() % 2 == 0; // Randomly decide whether to move up or down
+        directionChangeInterval = 3.0f + (rand() % 2); // Randomize the interval again
+
+        // Restart the clock
+        directionClock.restart();
+    }
+
     // Get current zombie position
     sf::Vector2f zombiePos = getPosition();
 
-    // Initialize the flag indicating the direction of movement
-    static bool movingUp = false;
-
+    // Calculate the new position by moving diagonally
+    // Adjust the speed as needed for diagonal movement
     float newX = zombiePos.x - 0.5f; // Move left horizontally
 
     // Check if the zombie should move up or down based on the flag
     float newY = zombiePos.y;
     if (movingUp) {
-        newY -= 0.5f; // Move up vertically
+        newY -= 0.5f * elapsedSeconds; // Move up vertically
     }
     else {
-        newY += 0.5f; // Move down vertically
+        newY += 0.5f * elapsedSeconds; // Move down vertically
     }
 
-    // Check if the zombie has reached the top or bottom edge of the screen
-    if (newY < 138) {
-        newY = 0; // Limit movement to the top edge of the screen
+    // Limit the movement to the top and bottom edge of the screen
+    if (newY < 288) {
+        newY = 288; // Limit movement to the top edge of the screen
         movingUp = false; // Change direction to move down
     }
-    if (newY > 1035) {
-        newY = 1035; // Limit movement to the bottom edge of the screen
+    else if (newY > 885) {
+        newY = 885; // Limit movement to the bottom edge of the screen
         movingUp = true; // Change direction to move up
     }
 
