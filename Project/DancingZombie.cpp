@@ -36,7 +36,8 @@ void DancingZombie::Move()
     float elapsedSeconds = directionClock.getElapsedTime().asSeconds();
 
     // Check if it's time to change direction
-    if (elapsedSeconds >= directionChangeInterval) {
+    if (elapsedSeconds >= directionChangeInterval) 
+    {
         // Randomly determine the new direction
         movingUp = rand() % 2 == 0; // Randomly decide whether to move up or down
         directionChangeInterval = 3.0f + (rand() % 2); // Randomize the interval again
@@ -49,25 +50,28 @@ void DancingZombie::Move()
     sf::Vector2f zombiePos = getPosition();
 
     // Calculate the new position by moving diagonally
-    // Adjust the speed as needed for diagonal movement
     float newX = zombiePos.x - 0.5f; // Move left horizontally
 
     // Check if the zombie should move up or down based on the flag
     float newY = zombiePos.y;
-    if (movingUp) {
+    if (movingUp) 
+    {
         newY -= 0.5f * elapsedSeconds; // Move up vertically
     }
-    else {
+    else 
+    {
         newY += 0.5f * elapsedSeconds; // Move down vertically
     }
 
-    // Limit the movement to the top and bottom edge of the screen
-    if (newY < 288) {
+    // Limit to the top and bottom of screen
+    if (newY < 288) 
+    {
         newY = 288; // Limit movement to the top edge of the screen
         movingUp = false; // Change direction to move down
     }
-    else if (newY > 885) {
-        newY = 885; // Limit movement to the bottom edge of the screen
+    else if (newY > 885) 
+    {
+        newY = 885; // Limit to the bottom of screen
         movingUp = true; // Change direction to move up
     }
 

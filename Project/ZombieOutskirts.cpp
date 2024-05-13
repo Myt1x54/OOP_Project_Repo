@@ -4,28 +4,28 @@
 
 ZombieOutskirts::ZombieOutskirts(RenderWindow& window) : Levels(window)
 {
-    // Load background image for BeginnersGarden
+    // Load background image for Zombie Outskirts
     backgroundimage.loadFromFile("../Images/ZombieOutskirts.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
     currency = 500;
     lives = 3;
-    font.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load your font file
+    font.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load font file
     currencyText.setFont(font);
     currencyText.setCharacterSize(50);
     sf::Color brownColor(139, 69, 19); // RGB values for brown color
     currencyText.setFillColor(brownColor);
     currencyText.setOutlineColor(sf::Color::Black);
     currencyText.setOutlineThickness(3);
-    currencyText.setPosition(320, 35); // Adjust position as needed
-    livefont.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load your font file
+    currencyText.setPosition(320, 35); // position
+    livefont.loadFromFile("../Images/HouseofTerrorRegular.otf"); // Load font file
     LivesText.setFont(font);
     LivesText.setCharacterSize(100);
     sf::Color brownlivesColor(139, 69, 19); // RGB values for brown color
     LivesText.setFillColor(brownlivesColor);
     LivesText.setOutlineColor(sf::Color::Black);
     LivesText.setOutlineThickness(3);
-    LivesText.setPosition(800, 420); // Adjust position as needed
+    LivesText.setPosition(800, 420); // position
     plant = new PlantFactory * [45];
     zombie = new ZombieFactory * [15];
     gameTime = new GameTime;
@@ -51,7 +51,7 @@ bool ZombieOutskirts::loseLife()
     else if (lives <= 0 || currency >= 10000)
     {
         LivesText.setString("Game Over");
-        LivesText.setPosition(500, 420); // Adjust position for the new text
+        LivesText.setPosition(500, 420); // position of the new text
 
         sf::Text continueText;
         continueText.setFont(font);
@@ -61,7 +61,7 @@ bool ZombieOutskirts::loseLife()
         continueText.setOutlineColor(sf::Color::Black);
         continueText.setOutlineThickness(3);
         continueText.setString("Press Space to Continue to Main Menu");
-        continueText.setPosition(380, 600); // Adjust position as needed
+        continueText.setPosition(380, 600); 
 
         window.draw(LivesText);
         window.draw(continueText);
@@ -89,10 +89,8 @@ bool ZombieOutskirts::loseLife()
         return true; // Indicate game over after space pressed
     }
 
-    // Draw the text
+    // Display text
     window.draw(LivesText);
-
-    // Update the display
     window.display();
 
     // Delay for a certain duration before continuing
@@ -140,7 +138,7 @@ int ZombieOutskirts::display()
 
     float spawnTime = 15.0f; // Time interval between zombie spawns 15 seconds
     float timeSinceSpawn = 0.0f;
-    int zombieCount = 0; // Track the number of zombies spawned
+    int zombieCount = 0; // number of zombies spawned
 
     bool zombiemoving[15];
     for (int i = 0; i < 15; i++)
@@ -158,15 +156,10 @@ int ZombieOutskirts::display()
         // Update time since last spawn
         timeSinceSpawn += elapsedTime;
 
-
-
-
-
         count = 0;
         /// Get the current mouse position relative to the window
         mousePosition = sf::Mouse::getPosition(window);
 
-        // Handle events specific to BeginnersGarden
         draw();
         sf::Event event;
         while (window.pollEvent(event))
@@ -215,7 +208,7 @@ int ZombieOutskirts::display()
 
                         if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 25 && mousePosition.y <= 129)
                         {
-                            // Set the selected plant type based on the icon clicked
+                            // Set the selected plant type as shovel
                             if (shovel)
                             {
                                 shovel = false;
@@ -269,8 +262,6 @@ int ZombieOutskirts::display()
                                 // Calculate the position of the new plant based on the row and column
                                 float plantX = 420 + column * horizontalDistance + horizontalDistance / 2;
                                 float plantY = 75 + row * verticalDistance + verticalDistance / 2;
-
-                                // Now, proceed with plant placement logic here
                             }
 
                             bool positionOccupied = false;
@@ -328,7 +319,7 @@ int ZombieOutskirts::display()
                     }
                 }
             }
-            // hahah noob
+            
             else if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::Escape)
@@ -398,22 +389,12 @@ int ZombieOutskirts::display()
                 break;
             }
 
-            // Decide which type of zombie to create based on your game logic
-            // For example, you might randomly choose between different types of zombies
-            // Here, let's create a SimpleZombie
-            
-
-            // Calculate the Y-position for the zombie
-            // Here, I'm assuming each row has a fixed height of 100 pixels, adjust as needed
             int randomRow = rand() % 5; // Choose a random row index between 0 and 4
             const float verticalDistance = (1034 - 125) / 5.0f;
 
             float zombieY = 30 + randomRow * verticalDistance + verticalDistance / 2;
 
-            // Set the position of the zombie
             newZombie->setPosition(1900 + (rand() + 1) % 100, zombieY);
-
-
 
             // Add the zombie to the zombie array
             zombie[zombieCount++] = newZombie;
@@ -541,7 +522,7 @@ int ZombieOutskirts::display()
             }
         }
 
-        // Then, check for clicks on the suns
+        // check for clicks on the suns
         for (int i = 0; i < 45; i++)
         {
             if (plant[i] != nullptr)

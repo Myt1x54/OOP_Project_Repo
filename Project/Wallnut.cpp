@@ -44,7 +44,7 @@ void Wallnut::takeDamage()
         {
             hitCount++;
         }
-        generateTimer.restart(); // Restart the timer after incrementing hitCount
+        generateTimer.restart(); // Restart the timer
     }
 
     if (hitCount >= 10) 
@@ -64,7 +64,7 @@ bool Wallnut::isFinishedMoving() const
     sf::Vector2f currentPosition = getPosition();
 
     // Calculate the destination position after rolling 3 squares
-    float destinationX = startPosition.x + 3 * 150; // Assuming SQUARE_SIZE is the size of each square
+    float destinationX = startPosition.x + 3 * 150;
     float destinationY = startPosition.y; // No change in Y position
 
     // Check if the Wallnut has reached its destination

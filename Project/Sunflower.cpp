@@ -31,7 +31,7 @@ void Sunflower::setPosition(float x, float y)
 {
     plantSprite.setPosition(x, y);
     // Set position for sun sprite
-    sunSprite.setPosition(x + 50, y - 40); // Adjust position as needed
+    sunSprite.setPosition(x + 50, y - 40);
 }
 
 sf::Vector2f Sunflower::getPosition() const
@@ -76,7 +76,7 @@ bool Sunflower::isClicked(sf::Vector2f mousePosition)
             if (!sunCollected && sunCount > 0)
             {
                 sunCount--;
-                sunCollected = true; // Mark that the sun has been collected in this frame
+                sunCollected = true; // sun has been collected in this frame
                 generateTimer.restart();
                 return true;
             }
@@ -98,7 +98,7 @@ void Sunflower::takeDamage()
         {
             hitCount++;
         }
-        generateTimer.restart(); // Restart the timer after incrementing hitCount
+        generateTimer.restart(); // Restart the timer
     }
 
     if (hitCount >= 3)

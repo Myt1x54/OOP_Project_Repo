@@ -30,11 +30,9 @@ void SnowPea::shootPea()
 {
     if (snowPea != nullptr)
     {
-        // Create a new GreenPea instance
-
-        // Set its position
+        // Set  position
         sf::Vector2f peaPosition = plantSprite.getPosition();
-        snowPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10); // Set initial position
+        snowPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10);
 
         sf::Vector2f pea = snowPea->getPosition();
         if (pea.x >= 1890 && pea.y >= 100 && pea.x >= 1890 && pea.y <= 1031)
@@ -43,7 +41,6 @@ void SnowPea::shootPea()
             counter = 0;
         }
 
-        // Draw the GreenPea
         snowPea->draw();
 
         // Update counter
