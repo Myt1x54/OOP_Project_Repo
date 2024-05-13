@@ -5,7 +5,6 @@ Peashooter::Peashooter(int newCost, int newHealth, int newAttackDamage, RenderWi
 {
     // Load Sprite for Peashooter
     plantImage.loadFromFile("../Images/peashooterAnimationSmaller.png");
-    //plantImage.loadFromFile("../Images/peashooterAnimationSmaller.png");
     plantTexture.loadFromImage(plantImage);
     plantSprite.setTexture(plantTexture);
     plantSprite.setTextureRect(sf::IntRect(0, 0, frameWidth, frameHeight));
@@ -17,7 +16,7 @@ Peashooter::Peashooter(int newCost, int newHealth, int newAttackDamage, RenderWi
     lastHitTime = 0;
     peaspeed = (rand() % 4) + 1;
 }
-//yo
+
 void Peashooter::updateSprite() {
     // Calculate the width and height of each frame
     int frameWidth = 2200 / 22;
@@ -63,15 +62,14 @@ void Peashooter::update()
 void Peashooter::shootPea(ZombieFactory** zombie, int totalzombies)
 {
     // Check if enough time has elapsed since the last shot
-    if (generateTimer.getElapsedTime().asSeconds() >= peaspeed) // Adjust the reload time here (2.0f represents 2 seconds)
+    if (generateTimer.getElapsedTime().asSeconds() >= peaspeed) // Adjust the reload time
     {
         if (greenPea != nullptr)
         {
-            // Create a new GreenPea instance
 
-            // Set its position
+            // Set position
             sf::Vector2f peaPosition = plantSprite.getPosition();
-            greenPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10); // Set initial position
+            greenPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10);
 
             sf::Vector2f pea = greenPea->getPosition();
             if (pea.x >= 1890 && pea.y >= 100 && pea.x >= 1890 && pea.y <= 1031)

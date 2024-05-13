@@ -33,8 +33,6 @@ void DancingZombie::Move()
     // Initialize the flag indicating the direction of movement
     static bool movingUp = false;
 
-    // Calculate the new position by moving diagonally
-    // Adjust the speed as needed for diagonal movement
     float newX = zombiePos.x - 0.5f; // Move left horizontally
 
     // Check if the zombie should move up or down based on the flag
@@ -56,7 +54,6 @@ void DancingZombie::Move()
         movingUp = true; // Change direction to move up
     }
 
-    // Update zombie position
     setPosition(newX, newY);
 }
 
@@ -70,14 +67,13 @@ void DancingZombie::DeleteZombie()
     int randomRow;
     float zombieY;
 
-    // Generate a new position until it's sufficiently different from the previous one
+    // Generate new position
     do {
         randomRow = rand() % 5; // Choose a random row index between 0 and 4
         const float verticalDistance = (1034 - 125) / 5.0f;
         zombieY = 30 + randomRow * verticalDistance + verticalDistance / 2;
     } while (abs(zombieY - prevY) < 100.0f); // Ensure sufficient difference in Y position
 
-    // Set the position of the zombie
     zombieSprite.setPosition(1900 + (rand() + 900) % 1500, zombieY);
 
     // Update previous position variables
@@ -85,15 +81,12 @@ void DancingZombie::DeleteZombie()
     prevY = zombieY;
 }
 
-
-// Check if a given position collides with the zombie
 bool DancingZombie::checkCollision(const sf::Vector2f& position) const
 {
     const float zombieWidth = 150.0f;
     const float zombieHeight = 150.0f;
 
-    // Get the position of the zombie
-    sf::Vector2f zombiePosition = getPosition(); // Assuming getPosition() returns the position of the zombie
+    sf::Vector2f zombiePosition = getPosition();
 
     // Check if the pea position overlaps with the zombie's bounding box
     if (position.x >= zombiePosition.x && position.x <= zombiePosition.x + zombieWidth &&

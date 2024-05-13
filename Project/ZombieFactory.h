@@ -10,7 +10,7 @@ protected:
     sf::Image zombieImage;
     sf::Texture zombieTexture;
     sf::Sprite zombieSprite;
-    //animation stuff
+    //animation stuff:
     sf::Clock animationClock;
     int currentFrame;
     int frameWidth;

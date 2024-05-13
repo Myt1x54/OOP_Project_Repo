@@ -40,8 +40,5 @@ public:
 
 	virtual bool isFinishedMoving() const;
 
-	//virtual int Display() = 0;
-
-
 };
 

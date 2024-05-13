@@ -105,7 +105,7 @@ int NighttimeSiege::display()
 
                         if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 25 && mousePosition.y <= 129)
                         {
-                            // Set the selected plant type based on the icon clicked
+                            // Set the selected plant type as shovel
                             if (shovel)
                             {
                                 shovel = false;
@@ -159,8 +159,6 @@ int NighttimeSiege::display()
                                 // Calculate the position of the new plant based on the row and column
                                 float plantX = 420 + column * horizontalDistance + horizontalDistance / 2;
                                 float plantY = 75 + row * verticalDistance + verticalDistance / 2;
-
-                                // Now, proceed with plant placement logic here
                             }
 
                             bool positionOccupied = false;

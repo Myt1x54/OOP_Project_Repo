@@ -13,7 +13,7 @@ protected:
 	sf::Image plantImage;
 	sf::Texture plantTexture;
 	sf::Sprite plantSprite;
-	//animation stuff
+	//animation stuff:
 	sf::Clock animationClock;
 	int currentFrame;
 	int frameWidth;

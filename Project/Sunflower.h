@@ -7,8 +7,8 @@ class Sunflower : public Plant
 {
 private:
 	int sunCount; // Data member to store the number of suns generated
-	sf::Texture sunTexture; // Texture for the sun sprite
-	sf::Sprite sunSprite; // Sprite for the sun
+	sf::Texture sunTexture; 
+	sf::Sprite sunSprite; 
 	sf::Clock generateTimer; // Timer for generating suns
 	bool sunCollected;
 	int hitCount;

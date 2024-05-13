@@ -54,7 +54,7 @@ void SimpleZombie::draw()
 {
     window.draw(zombieSprite);
 }
-//commentagain
+
 void SimpleZombie::Move()
 {
     sf::Vector2f zombie = getPosition();
@@ -71,8 +71,9 @@ void SimpleZombie::DeleteZombie()
     int randomRow;
     float zombieY;
 
-    // Generate a new position until it's sufficiently different from the previous one
-    do {
+    // Generate a new position
+    do 
+    {
         randomRow = rand() % 5; // Choose a random row index between 0 and 4
         const float verticalDistance = (1034 - 125) / 5.0f;
         zombieY = 30 + randomRow * verticalDistance + verticalDistance / 2;
@@ -95,7 +96,7 @@ bool SimpleZombie::checkCollision(const sf::Vector2f& position) const
     const float zombieHeight = 150.0f;
 
     // Get the position of the zombie
-    sf::Vector2f zombiePosition = getPosition(); // Assuming getPosition() returns the position of the zombie
+    sf::Vector2f zombiePosition = getPosition();
 
     // Check if the pea position overlaps with the zombie's bounding box
     if (position.x >= zombiePosition.x && position.x <= zombiePosition.x + zombieWidth &&

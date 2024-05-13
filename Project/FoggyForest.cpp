@@ -7,11 +7,11 @@ FoggyForest::FoggyForest(RenderWindow& window) : Levels(window)
     backgroundimage.loadFromFile("../Images/FoggyForest.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
-    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load your font file
+    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load font file
     currencyText.setFont(font);
     currencyText.setCharacterSize(24);
     currencyText.setFillColor(sf::Color::White);
-    currencyText.setPosition(356, 65); // Adjust position as needed
+    currencyText.setPosition(356, 65); // position
     plant = new PlantFactory * [45];
 }
 
@@ -46,7 +46,6 @@ int FoggyForest::display()
         /// Get the current mouse position relative to the window
         mousePosition = sf::Mouse::getPosition(window);
 
-        // Handle events specific to BeginnersGarden
         draw();
         sf::Event event;
         while (window.pollEvent(event))
@@ -204,7 +203,7 @@ int FoggyForest::display()
                                     break;
 
                                 }
-                                // Set the position of the new plant
+                                // Set position of new plant
                                 plant[i]->setPosition(plantX, plantY);
                                 i++;
                             }

@@ -30,11 +30,9 @@ void Repeater::shootPea()
 {
     if (greenPea != nullptr)
     {
-        // Create a new GreenPea instance
-
-        // Set its position
+        // Set position
         sf::Vector2f peaPosition = plantSprite.getPosition();
-        greenPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10); // Set initial position
+        greenPea->setPosition(peaPosition.x + 100 + counter, peaPosition.y + 10);
 
         sf::Vector2f pea = greenPea->getPosition();
         if (pea.x >= 1890 && pea.y >= 100 && pea.x >= 1890 && pea.y <= 1031)

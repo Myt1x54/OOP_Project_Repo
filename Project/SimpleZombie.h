@@ -21,7 +21,6 @@ public:
 
 	void DeleteZombie();
 
-
 	// Check if a given position collides with the zombie
 	bool checkCollision(const sf::Vector2f& position) const;
 

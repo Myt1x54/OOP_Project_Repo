@@ -7,11 +7,11 @@ RooftopRampage::RooftopRampage(RenderWindow& window) : Levels(window)
     backgroundimage.loadFromFile("../Images/RooftopRampage.png");
     backgroundTexture.loadFromImage(backgroundimage);
     backgroundSprite.setTexture(backgroundTexture);
-    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load your font file
+    font.loadFromFile("../Images/Comic_Sans.ttf"); // Load font file
     currencyText.setFont(font);
     currencyText.setCharacterSize(24);
     currencyText.setFillColor(sf::Color::White);
-    currencyText.setPosition(356, 65); // Adjust position as needed
+    currencyText.setPosition(356, 65); // position
     plant = new PlantFactory * [45];
 }
 
@@ -43,10 +43,9 @@ int RooftopRampage::display()
     while (window.isOpen())
     {
 
-        /// Get the current mouse position relative to the window
+        // Get the current mouse position relative to the window
         mousePosition = sf::Mouse::getPosition(window);
 
-        // Handle events specific to BeginnersGarden
         draw();
         sf::Event event;
         while (window.pollEvent(event))
@@ -105,7 +104,7 @@ int RooftopRampage::display()
 
                         if (mousePosition.x >= 30 && mousePosition.x <= 130 && mousePosition.y >= 25 && mousePosition.y <= 129)
                         {
-                            // Set the selected plant type based on the icon clicked
+                            // Set the selected plant type as shovel
                             if (shovel)
                             {
                                 shovel = false;
@@ -159,8 +158,6 @@ int RooftopRampage::display()
                                 // Calculate the position of the new plant based on the row and column
                                 float plantX = 420 + column * horizontalDistance + horizontalDistance / 2;
                                 float plantY = 75 + row * verticalDistance + verticalDistance / 2;
-
-                                // Now, proceed with plant placement logic here
                             }
 
                             bool positionOccupied = false;
