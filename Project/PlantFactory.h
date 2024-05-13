@@ -40,7 +40,7 @@ public:
 
 	virtual void draw() = 0;
 
-	virtual void shootPea(ZombieFactory** zombie) = 0;
+	virtual void shootPea(ZombieFactory** zombie, int totalzombies) = 0;
 
 	virtual void update() = 0;
 

@@ -60,7 +60,7 @@ void Peashooter::update()
     // nothing
 }
 
-void Peashooter::shootPea(ZombieFactory** zombie)
+void Peashooter::shootPea(ZombieFactory** zombie, int totalzombies)
 {
     // Check if enough time has elapsed since the last shot
     if (generateTimer.getElapsedTime().asSeconds() >= peaspeed) // Adjust the reload time here (2.0f represents 2 seconds)
@@ -84,7 +84,7 @@ void Peashooter::shootPea(ZombieFactory** zombie)
             greenPea->draw();
 
             // Check for collision with each zombie
-            for (int i = 0; i < 5; ++i)
+            for (int i = 0; i < totalzombies; ++i)
             {
                 if (zombie[i] != nullptr)
                 {

@@ -28,7 +28,7 @@ public:
 
 	sf::Vector2f getPosition() const;
 
-	void shootPea(ZombieFactory** zombie);
+	void shootPea(ZombieFactory** zombie, int totalzombies);
 
 	void update();
 

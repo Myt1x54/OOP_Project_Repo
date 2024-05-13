@@ -1,5 +1,7 @@
 #pragma once
 #include<SFML/Graphics.hpp>
+#include "FootballZombie.h"
+#include "DancingZombie.h"
 #include "Time.h"
 using namespace std;
 using namespace sf;

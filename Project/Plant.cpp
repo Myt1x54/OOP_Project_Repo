@@ -32,7 +32,7 @@ void Plant::setPosition(float x, float y)
 	// nothing to set here
 }
 
-void Plant::shootPea(ZombieFactory** zombie)
+void Plant::shootPea(ZombieFactory** zombie, int totalzombies)
 {
 	// do nothing
 }

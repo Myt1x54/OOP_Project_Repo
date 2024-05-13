@@ -27,7 +27,6 @@ ZombieOutskirts::ZombieOutskirts(RenderWindow& window) : Levels(window)
     LivesText.setOutlineThickness(3);
     LivesText.setPosition(800, 420); // Adjust position as needed
     plant = new PlantFactory * [45];
-    plant = new PlantFactory * [45];
     zombie = new ZombieFactory * [15];
     gameTime = new GameTime;
 }
@@ -131,7 +130,7 @@ int ZombieOutskirts::display()
         plant[i] = nullptr;
     }
 
-    for (int i = 0; i < 5; ++i)
+    for (int i = 0; i < 15; ++i)
     {
         zombie[i] = nullptr;
     }
@@ -145,8 +144,8 @@ int ZombieOutskirts::display()
     float timeSinceSpawn = 0.0f;
     int zombieCount = 0; // Track the number of zombies spawned
 
-    bool zombiemoving[5];
-    for (int i = 0; i < 5; i++)
+    bool zombiemoving[15];
+    for (int i = 0; i < 15; i++)
     {
         zombiemoving[i] = 1;
     }
@@ -381,16 +380,30 @@ int ZombieOutskirts::display()
             continue;
         }
 
-        if (timeSinceSpawn >= spawnTime && zombieCount < 5)
+        if (timeSinceSpawn >= spawnTime && zombieCount < 15)
         {
-
+            int noob = (rand() % 3) + 1;
             // Use the ZombieFactory to create a new zombie instance
             ZombieFactory* newZombie = nullptr;
+            switch (noob)
+            {
+            case 1:
+                newZombie = new SimpleZombie(100, 10, window);
+                break;
+            case 2:
+                newZombie = new FootballZombie(100, 10, window);
+                break;
+            case 3:
+                newZombie = new DancingZombie(100, 10, window);
+                break;
+            default:
+                break;
+            }
 
             // Decide which type of zombie to create based on your game logic
             // For example, you might randomly choose between different types of zombies
             // Here, let's create a SimpleZombie
-            newZombie = new SimpleZombie(100, 10, window);
+            
 
             // Calculate the Y-position for the zombie
             // Here, I'm assuming each row has a fixed height of 100 pixels, adjust as needed
@@ -477,7 +490,7 @@ int ZombieOutskirts::display()
             window.setMouseCursorVisible(true);
         }
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < 15; ++i)
         {
             if (zombie[i] != nullptr)
             {
@@ -561,7 +574,7 @@ int ZombieOutskirts::display()
                 sf::Vector2f peashooterPosition = plant[j]->getPosition();
 
                 // Iterate through zombies to find if there's one in the same row as the Peashooter
-                for (int k = 0; k < 5; ++k)
+                for (int k = 0; k < 15; ++k)
                 {
                     if (zombie[k] != nullptr)
                     {
@@ -577,7 +590,7 @@ int ZombieOutskirts::display()
                         if (zombiePosition.x <= 1900 && abs(zombiePosition.y - peashooterPosition.y) < verticalDistance / 2)
                         {
                             // If yes, shoot at the zombie
-                            peashooter->shootPea(zombie);
+                            peashooter->shootPea(zombie, 15);
                         }
                     }
                 }
@@ -590,7 +603,7 @@ int ZombieOutskirts::display()
             bool plantDestroyed = false; // Flag to indicate if a plant has been destroyed
             if (plant[j] != nullptr)
             {
-                for (int k = 0; k < 5; ++k)
+                for (int k = 0; k < zombieCount; ++k)
                 {
                     if (zombie[k] != nullptr)
                     {
@@ -642,4 +655,10 @@ ZombieOutskirts::~ZombieOutskirts()
         delete plant[i];
     }
     delete[] plant;
+
+    for (int i = 0; i < 15; ++i)
+    {
+        delete zombie[i];
+    }
+    delete[] zombie;
 }
