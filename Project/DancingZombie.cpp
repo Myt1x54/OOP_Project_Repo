@@ -27,8 +27,37 @@ void DancingZombie::draw()
 
 void DancingZombie::Move()
 {
-    sf::Vector2f zombie = getPosition();
-    setPosition(zombie.x - 0.5f, zombie.y);
+    // Get current zombie position
+    sf::Vector2f zombiePos = getPosition();
+
+    // Initialize the flag indicating the direction of movement
+    static bool movingUp = false;
+
+    // Calculate the new position by moving diagonally
+    // Adjust the speed as needed for diagonal movement
+    float newX = zombiePos.x - 0.5f; // Move left horizontally
+
+    // Check if the zombie should move up or down based on the flag
+    float newY = zombiePos.y;
+    if (movingUp) {
+        newY -= 0.5f; // Move up vertically
+    }
+    else {
+        newY += 0.5f; // Move down vertically
+    }
+
+    // Check if the zombie has reached the top or bottom edge of the screen
+    if (newY < 138) {
+        newY = 0; // Limit movement to the top edge of the screen
+        movingUp = false; // Change direction to move down
+    }
+    if (newY > 1035) {
+        newY = 1035; // Limit movement to the bottom edge of the screen
+        movingUp = true; // Change direction to move up
+    }
+
+    // Update zombie position
+    setPosition(newX, newY);
 }
 
 void DancingZombie::DeleteZombie()
